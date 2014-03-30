@@ -1,0 +1,55 @@
+<html>
+<head>
+</head>
+<body>
+<?php
+  header('Content-Type: text/html;charset=utf8');
+
+  $dblocation = "mysql48.1gb.ru";
+  $dbname = "gb_wst_test1";
+  $dbuser = "gb_wst_test1";
+  $dbpasswd = "10910916aghj";
+  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
+  
+  if (!$dbcnx)
+  {
+    echo "Server is unavailable. Error: ".mysql_error();
+	exit();
+  }
+  if (!mysql_select_db($dbname, $dbcnx))
+  {
+    echo "Database is unavailable.";
+	exit();
+  }
+  
+  mysql_query("set character_set_client='utf8'");
+  mysql_query("set character_set_results='utf8'");
+  mysql_query("set character_set_collation_connection='utf8'");
+  mysql_query("set character_set_connection='utf8'");
+  mysql_query("set character_set_database='utf8'");
+  mysql_query("set character_set_server='utf8'");
+  mysql_query("set character_set_system='utf8'");
+  mysql_query("set character_set_collation_database='utf8'");
+  mysql_query("set character_set_collation_server='utf8'");
+
+  $table = "main_table";
+  //$q = "SELECT * FROM ".$table." WHERE region = 'Санкт-Петербург'";
+  $r = mysql_query("SELECT * FROM main_table WHERE REGION = 'Санкт-Петербург'");
+  echo mysql_num_rows($r);
+  echo "<table border='1'>";
+  for ($i = 0; $i < mysql_num_rows($r); $i++)
+  {
+    echo "<tr>";
+    $row = mysql_fetch_array($r, MYSQL_ASSOC);
+	for ($j = 0; $j < mysql_num_fields($r); $j++)
+	{
+	  echo "<td>";
+	  $obj = mysql_fetch_field($r, $j);
+	  echo $row[$obj->name];
+	  echo "</td>";
+	}
+	echo "</tr>";
+  }
+  ?>
+</body>
+</html>
