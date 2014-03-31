@@ -3,8 +3,32 @@
 </head>
 <body>
 <?php
-  header('Content-Type: text/html;charset=utf8');
+  function result_to_table( $r )
+  {
+    echo mysql_num_rows($r);
+    echo "<table border='1'>";
+    for ($i = 0; $i < mysql_num_rows($r); $i++)
+    {
+      echo "<tr>";
+      $row = mysql_fetch_array($r, MYSQL_ASSOC);
+	  for ($j = 0; $j < mysql_num_fields($r); $j++)
+      {
+	    echo "<td>";
+	    $obj = mysql_fetch_field($r, $j);
+	    echo $row[$obj->name];
+	    echo "</td>";
+	  }
+	  echo "</tr>";
+    }
+  }
 
+
+  require_once("IpGeo-1.0/IpGeo.php");
+ 
+  $ipGeo=new IpGeo();
+  $result=$ipGeo->find($_SERVER['REMOTE_ADDR']);
+  $ipGeo->destroy();
+ 
   $dblocation = "mysql48.1gb.ru";
   $dbname = "gb_wst_test1";
   $dbuser = "gb_wst_test1";
@@ -21,35 +45,57 @@
     echo "Database is unavailable.";
 	exit();
   }
-  
-  mysql_query("set character_set_client='utf8'");
-  mysql_query("set character_set_results='utf8'");
-  mysql_query("set character_set_collation_connection='utf8'");
-  mysql_query("set character_set_connection='utf8'");
-  mysql_query("set character_set_database='utf8'");
-  mysql_query("set character_set_server='utf8'");
-  mysql_query("set character_set_system='utf8'");
-  mysql_query("set character_set_collation_database='utf8'");
-  mysql_query("set character_set_collation_server='utf8'");
-
+  mysql_query("set character_set_client='cp1251'");
+  mysql_query("set character_set_results='cp1251'");
+  mysql_query("set character_set_collation_connection='cp1251'");
+  mysql_query("set character_set_connection='cp1251'");
+  mysql_query("set character_set_database='cp1251'");
+  mysql_query("set character_set_server='cp1251'");
+  mysql_query("set character_set_system='cp1251'");
+  mysql_query("set character_set_collation_database='cp1251'");
+  mysql_query("set character_set_collation_server='cp1251'");
+ 
   $table = "main_table";
-  //$q = "SELECT * FROM ".$table." WHERE region = 'Санкт-Петербург'";
-  $r = mysql_query("SELECT * FROM main_table WHERE REGION = 'Санкт-Петербург'");
-  echo mysql_num_rows($r);
-  echo "<table border='1'>";
-  for ($i = 0; $i < mysql_num_rows($r); $i++)
+  $region = "";
+  
+  if($result && $result['country'] == 'RU')
   {
-    echo "<tr>";
-    $row = mysql_fetch_array($r, MYSQL_ASSOC);
-	for ($j = 0; $j < mysql_num_fields($r); $j++)
+    $region = $result['region']; 
+	$qregion = mysql_query("SELECT * FROM $table WHERE region = '$region'");
+	$dregion = mysql_num_rows($qregion);
+	echo $dregion."<br>";
+	if ($dregion > 0)
 	{
-	  echo "<td>";
-	  $obj = mysql_fetch_field($r, $j);
-	  echo $row[$obj->name];
-	  echo "</td>";
+	  $nmarket = 1 + mt_rand(0, $dregion - 1);
+	  $r = mysql_query("SELECT * FROM $table WHERE region = '$region'");
+	  for ($i = 0; $i < $nmarket; $i++)
+        $row = mysql_fetch_array($r, MYSQL_ASSOC);
+
+	  echo "<table border='1'>";
+	  echo "<tr>";
+  	  for ($j = 0; $j < mysql_num_fields($r); $j++)
+      {
+	    echo "<td>";
+	    $obj = mysql_fetch_field($r, $j);
+	    echo $row[$obj->name];
+	    echo "</td>";
+	  }
+
+	  echo "</tr>";
+	  echo "</table>";
+	  //result_to_table($r);
 	}
-	echo "</tr>";
   }
-  ?>
+  
+/*
+  $qmarket = mysql_query("SELECT * FROM market");
+  $nmarket = 1 + mt_rand(0, mysql_num_rows($qmarket) - 1);
+  echo $nmarket."<br>";
+  $qmarket = mysql_query("SELECT * FROM market WHERE id = $nmarket"); 
+  $res = mysql_fetch_array($qmarket, MYSQL_ASSOC);
+  $mname = $res['market'];
+  $r = mysql_query("SELECT * FROM main_table WHERE market = '$mname'");
+  result_to_table($r); */
+?>
 </body>
 </html>
