@@ -1,9 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
+ <meta charset="utf-8" />
+ <link href="lib.css" rel="stylesheet">
 </head>
 <body>
-Готовая библиотека книг
+<br>
+<div id="title" align="center">
+<h2>Готовая библиотека книг</h2>
+</div>
+<div id="menu" align="center">
+ <ul >
+  <li><button onclick="books()">Книги</button></li>
+  <li><button onclick="periodicals()">Периодика</button></li>
+  <li><button onclick="favourites()">Любимые</button></li>
+  <li><button onclick="collection()">Коллекция</button></li>
+ </ul>
+</div>
+<div id="sort" align="right">
+       <p>Отсортировать по
+            <select size="1" name="sort">
+                <option selected value="Автору" >Автору <option>
+                <option  value="Названию" >Названию<option>
+                <option value="Недавно прочитанные">Недавно прочитанные<option>
+                <option value="Недавно добавленные">Недавно добавленные<option>
+            </select>
+        </p>
+ </div>
+<div id="content">
+<ul>
+ <li><button><img src="lib/book1.jpg"></button></li>
+ <li><button><img src="lib/book2.jpg"></button></li>
+ <li><button><img src="lib/book3.jpg"></button></li>
+ <li><button><img src="lib/book4.jpg"></button></li>
+ </ul>
+ </div>
+ <div id="footer" align="center">
+ <ul>
+  <li><a href="#">Добавить в любимые</a></li>
+  <li><a href="#">Добавить в коллекцию</a></li>
+ </ul>
+ </div>
 </body>
 </html>
+<script language="javascript" type="text/javascript">
+function books()
+{
+document.getElementById("content").innerHTML = '<ul>\
+ <li><button><img src="lib/book1.jpg"></button></li>\
+ <li><button><img src="lib/book2.jpg"></button></li>\
+ <li><button><img src="lib/book3.jpg"></button></li>\
+ <li><button><img src="lib/book4.jpg"></button></li>\
+ </ul>'
+}
+function periodicals()
+{
+document.getElementById("content").innerHTML = 'Периодика'
+}
+function favourites()
+{
+document.getElementById("content").innerHTML = 'Любимые'
+}
+function collection()
+{
+document.getElementById("content").innerHTML = 'Коллекция'
+}
+</script>
+
+
+
+
