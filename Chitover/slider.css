@@ -1,0 +1,160 @@
+/* Ширина слайдера */  
+ #slider1 {  
+     width: 300px;  
+ }
+  /* Контейнер слайдера */  
+ #slider1.ui-slider {  
+     position: absolute; 
+     top: 370px;
+     left: 300px;	 
+ }  
+ /* Ползунок */  
+ #slider1.ui-slider .ui-slider-handle {  
+     position: absolute;  
+     z-index: 2; 
+     width: 10px;   /* Задаем нужную ширину */  
+     height: 10px;  /* и высоту */  
+     background: #999; /* картинка изображающая ползунок. Или можно залить цветом, задать бордюр и скругления */  
+     cursor: pointer  
+ }  
+
+ #slider1.ui-slider .ui-slider-range {  
+     position: absolute;  
+     z-index: 1;  
+     font-size: .7em;  
+     display: block;  
+     border: 0;  
+     overflow: hidden;  
+ }  
+ /* горизонтальный слайдер (сама полоса по которой бегает ползунок) */  
+ #slider1.ui-slider-horizontal {  
+      height: 6px; /* задаем высоту согласно дизайна */  
+ }  
+ /* позиционируем ползунки  */
+ #slider1.ui-slider-horizontal .ui-slider-handle {   
+     top: -2px;  
+     margin-left: 0px;  
+ }  
+ /* оформление полосы по которой ходит ползунок */  
+ #slider1.ui-widget-content {   
+     /*border: 1px solid #D4D4D4;  */
+     background: #ccc;  
+ }  
+ /* оформление активного участка (между двумя ползунками)  */
+ #slider1.ui-widget-header {   
+     /*border: 1px solid #D4D4D4;  */
+     background: #ccc;   
+ }  
+ /* скругление для полосы слайдера */  
+ #slider1.ui-corner-all {  
+     -moz-border-radius: 4px;  
+     -webkit-border-radius: 4px;  
+     border-radius: 4px; 
+ } 
+
+ #slider2 {  
+     width: 50px;  
+  }
+  /* Контейнер слайдера */  
+ #slider2.ui-slider {  
+     position: absolute; 
+     top: 370px;	
+     left: 670px;	 
+ }  
+ /* Ползунок */  
+ #slider2.ui-slider .ui-slider-handle {  
+     position: absolute;  
+     z-index: 2; 
+     width: 10px;   /* Задаем нужную ширину */  
+     height: 10px;  /* и высоту */  
+     background: #999; /* картинка изображающая ползунок. Или можно залить цветом, задать бордюр и скругления */  
+     cursor: pointer  
+ }  
+
+ #slider2.ui-slider .ui-slider-range {  
+     position: absolute;  
+     z-index: 1;  
+     font-size: .7em;  
+     display: block;  
+     border: 0;  
+     overflow: hidden;  
+ }  
+ /* горизонтальный слайдер (сама полоса по которой бегает ползунок) */  
+ #slider2.ui-slider-horizontal {  
+      height: 6px; /* задаем высоту согласно дизайна */  
+ }  
+ /* позиционируем ползунки  */
+ #slider2.ui-slider-horizontal .ui-slider-handle {   
+     top: -2px;  
+     margin-left: 0px;  
+ }  
+ /* оформление полосы по которой ходит ползунок */  
+ #slider2.ui-widget-content {   
+     /*border: 1px solid #D4D4D4;  */
+     background: #ccc;  
+ }  
+ /* оформление активного участка (между двумя ползунками)  */
+ #slider2.ui-widget-header {   
+     /*border: 1px solid #D4D4D4;  */
+     background: #ccc;   
+ }  
+ /* скругление для полосы слайдера */  
+ #slider2.ui-corner-all {  
+     -moz-border-radius: 4px;  
+     -webkit-border-radius: 4px;  
+     border-radius: 4px; 
+ } 
+
+ #slider3 {  
+     width: 50px;  
+ }
+ /* Контейнер слайдера */  
+ #slider3.ui-slider {  
+     position: absolute; 
+     top: 370px;
+     left: 755px;	 
+ }  
+ /* Ползунок */  
+ #slider3.ui-slider .ui-slider-handle {  
+     position: absolute;  
+     z-index: 2; 
+     width: 10px;   /* Задаем нужную ширину */  
+     height: 10px;  /* и высоту */  
+     background: #999; /* картинка изображающая ползунок. Или можно залить цветом, задать бордюр и скругления */  
+     cursor: pointer  
+ }  
+
+ #slider3.ui-slider .ui-slider-range {  
+     position: absolute;  
+     z-index: 1;  
+     font-size: .7em;  
+     display: block;  
+     border: 0;  
+     overflow: hidden;  
+ }  
+ /* горизонтальный слайдер (сама полоса по которой бегает ползунок) */  
+ #slider3.ui-slider-horizontal {  
+      height: 6px; /* задаем высоту согласно дизайна */  
+ }  
+ /* позиционируем ползунки  */
+ #slider3.ui-slider-horizontal .ui-slider-handle {   
+     top: -2px;  
+     margin-left: 0px;  
+ }  
+ /* оформление полосы по которой ходит ползунок */  
+ #slider3.ui-widget-content {   
+     /*border: 1px solid #D4D4D4;  */
+     background: #ccc;  
+ }  
+ /* оформление активного участка (между двумя ползунками)  */
+ #slider3.ui-widget-header {   
+     /*border: 1px solid #D4D4D4;  */
+     background: #ccc;   
+ }  
+ /* скругление для полосы слайдера */  
+ #slider3.ui-corner-all {  
+     -moz-border-radius: 4px;  
+     -webkit-border-radius: 4px;  
+     border-radius: 4px; 
+ } 
+ 
