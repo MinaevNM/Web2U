@@ -62,6 +62,7 @@ public class MyActivity extends Activity
       setContentView(R.layout.main);
 
       tv = (TextView)findViewById(R.id.textView);
+      tv.setTextColor((255 << 16) | (255 << 24));
       final TextView ts = (TextView)findViewById(R.id.textSpeed);
       SeekBar sb = (SeekBar)findViewById(R.id.seekBar);
       ts.setText(min + " words per minute");
