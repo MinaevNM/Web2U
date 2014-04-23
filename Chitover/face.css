@@ -1,0 +1,11 @@
+*{margin: 0; padding: 0;}
+ #logotip {border: 1px solid black;}
+ #content {width: 50%; margin-left:25%; min-width: 230px;}
+ #footer {height:10%;}
+ #footer {overflow:hidden; display:inline-block}
+ #footer {position: relative; width:100%; }
+ #footer ul li {display: inline;}
+ input[type=password]{
+   width:149px;
+}
+ form {border: 1px solid black; }
