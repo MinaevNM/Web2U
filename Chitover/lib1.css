@@ -1,0 +1,12 @@
+*{margin: 0; padding: 0;}
+ #menu {height:10%; width: 100%; padding-top: 30px;}
+ #menu li {display: inline; padding:50px;}
+ #content {width: 100%; padding-top: 100px; }
+
+ #footer {height:10%;}
+ #content, #footer {overflow:hidden; display:inline-block}
+ #footer { width:100%; padding-top:300px;}
+ #footer ul li {display: inline;}
+ #content li {display: inline; padding:50px;}
+ #sort {padding-right:30px;padding-top:30px;}
+ 

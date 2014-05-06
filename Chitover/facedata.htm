@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link href="facedata.css" rel="stylesheet">
+</head>
+<body>
+<table><tr>
+ <td><div id="logo"><img src="images/chitover_logo.jpg" ></div></td>
+ <td width="80%" align="right" valign="top"><div id="topright_menu">
+  <ul>
+   <li><a href="entr.htm"><img src="images/entr.jpg"></a></li>
+   <li><a href="info.htm"><img src="images/info.jpg"></a></li>
+   <li><a href="refer.htm"><img src="images/zoom.jpg"></a></li>
+   <li><a href="forum.htm"><img src="images/forum.jpg"></a></li>
+   <li><a href="lib.php"><img src="images/lib.jpg"></a></li>
+   <li><a href="plus.htm"><img src="images/plus.jpg"></a></li>
+   <li><a href="face.htm"><img src="images/face.jpg"></a></li>
+  </ul>
+ </div></td>
+ </tr></table>
+
+<div id="menu" align="center" >
+<ul><table width="100%" ><tr><td width="50%" align="center">
+ <li><a href="#">Личные данные</a></li></td>
+ <td width="50%" align="center"><li><a href="lib.php">Библиотека</a></li></td>
+</ul></tr></table>
+</div>
+<hr id="hr">
+<br>
+<div id="content_left">
+Ф. И. О.<br><br>
+Фамилия<br>
+<p><textarea readonly name="textarea_surname" cols="40" rows="1">Иванов</textarea></p><br>
+Имя<br>
+<p><textarea readonly name="textarea_name" cols="40" rows="1">Иван</textarea></p><br>
+Отчество<br>
+<p><textarea readonly name="textarea_f" cols="40" rows="1">Иванович</textarea></p><br>
+</div>
+<div id="content_right">
+E_mail и  телефон<br><br>
+Основной E_mail<br>
+<p><textarea id="ta_mainmail" name="textarea_mainmail" cols="40" rows="1">Ivanivanov@yandex.ru</textarea></p><br>
+Резервный E_mail<br>
+<p><textarea id="ta_mail" name="textarea_mail" cols="40" rows="1">Ivanivanov@yandex.ru</textarea></p><br>
+Телефон<br>
+<p><textarea id="ta_phone" name="textarea_phone" cols="40" rows="1">8-911-000-00-00</textarea></p>
+<br><br>
+<button onclick="change()" id="button_change">Изменить</button>
+</div> 
+</body>
+<script language="javascript" type="text/javascript"> 
+function change()
+{
+alert("Вы ввели "+document.getElementById('ta_mainmail').value+"   "+document.getElementById('ta_mail').value+"   "+document.getElementById('ta_phone').value);
+}
+
+</script>
+</html>

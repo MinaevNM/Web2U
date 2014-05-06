@@ -1,0 +1,10 @@
+*{margin: 0; padding: 0;}
+ #topright_menu {min-width: 100px;}
+ ul li {display: inline;}
+ #top_menu ul li {display: inline;}
+ #menu {position: absolute; top: 180px; width: 100%; }
+ #hr {position: absolute; top: 220px; width: 100%;}
+ #content_left {position: absolute; top: 240px; left: 50px; }
+ #content_right {position: absolute; top: 240px; left: 450px; }
+ #button_change {position: relative; left: 260px; }
+ textarea {overflow: hidden;}

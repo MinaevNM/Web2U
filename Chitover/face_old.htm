@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link href="face.css" rel="stylesheet">
+</head>
+<body oncontextmenu='return false;' onclick='hide()'>
+<a href="index.html">На главную</a>
+<h2 align="center">Личный кабинет<br>
+Иван Иванов<br>
+Добавленные пользователем книги<br></h2>
+<p align="center">(На книге доступно меню по правой клавише)</p>
+<div id="add" align="right">
+<button>Добавить</button>
+</div>
+<div id="stat" onclick='hidestat()' style="position: absolute; top:0px; left:0px;  display: none; background-color:#CCC;">
+<table border="1">
+<tr><td>Всего слов</td><td>10000</td></tr>
+<tr><td>Прочитано слов</td><td>2000</tr>
+<tr><td>Осталось слов</td><td>8000</td></tr>
+<tr><td>Всего времени</td><td>2часа 40мин</td></tr>
+<tr><td>Прочитано времени</td><td>35 минут</td></tr>
+<tr><td>Осталось времени</td><td>2 часа 05 мин</td></tr>
+<tr><td>Скорость чтения</td><td>250 слов.мин</td></tr>
+</table>
+</div>
+
+<div id="content">
+<ul>
+ <li><button oncontextmenu="contextMenu()"><img src="lib/book1.jpg"></button></li>
+ <li><button oncontextmenu="contextMenu()"><img src="lib/book2.jpg"></button></li>
+ <li><button oncontextmenu="contextMenu()"><img src="lib/book3.jpg"></button></li>
+ <li><button oncontextmenu="contextMenu()"><img src="lib/book4.jpg"></button></li>
+ </ul>
+ </div>
+<div id="conMenuId"  style="position: absolute; top:0px; left:0px;  width:50px; border:1px solid #666; background-color:#CCC; visibility: none;">
+</div>
+<script language="javascript" type="text/javascript">
+function contextMenu()
+{
+var menu = document.getElementById("conMenuId");
+menu.style.visibility='visible';
+var html = "";
+
+html = "<button>Читать&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>";
+html += "<br><button onclick='stat()'>Статистика</button>";
+html += "<br><button>Удалить&nbsp&nbsp&nbsp&nbsp&nbsp</button>";
+menu.innerHTML = html;
+menu.style.top = event.y + "px";
+menu.style.left = event.x + "px";
+return false;
+}
+function stat(){
+var stat=document.getElementById("stat");
+stat.style.visibility='visible';
+stat.style.display="";
+stat.style.top = event.y + "px";
+stat.style.left = event.x + "px";
+}
+function hide(){
+ var menu = document.getElementById("conMenuId");
+ menu.style.visibility='hidden';
+}
+function hidestat(){
+ var menu = document.getElementById("stat");
+ menu.style.visibility='hidden';
+}
+</script>
+</html>
+
