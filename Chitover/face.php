@@ -7,10 +7,15 @@ if(isset($_POST['pswrd']))
 
 if($login != "" && $pswrd != "" )
 {
-  $dblocation = "localhost";
-  $dbname = "chitover";
-  $dbuser = "root";
-  $dbpasswd = "root";
+ $dblocation = "mysql48.1gb.ru";
+  $dbname = "gb_wst_test1";
+  $dbuser = "gb_wst_test1";
+  $dbpasswd = "10910916aghj";
+  
+ // $dblocation = "localhost";
+ // $dbname = "chitover";
+ // $dbuser = "root";
+//  $dbpasswd = "root";
   $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
   if (!$dbcnx)
   {

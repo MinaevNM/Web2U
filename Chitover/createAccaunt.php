@@ -35,10 +35,14 @@ if($login != "" && $pswrd != "" && $repeatPswrd != "" && $cod != "")
   {
    echo "аккаунт создан";
 
-  $dblocation = "localhost";
-  $dbname = "chitover";
-  $dbuser = "root";
-  $dbpasswd = "root";
+  //$dblocation = "localhost";
+  //$dbname = "chitover";
+ // $dbuser = "root";
+  //$dbpasswd = "root";
+    $dblocation = "mysql48.1gb.ru";
+  $dbname = "gb_wst_test1";
+  $dbuser = "gb_wst_test1";
+  $dbpasswd = "10910916aghj";
   $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
   if (!$dbcnx)
   {

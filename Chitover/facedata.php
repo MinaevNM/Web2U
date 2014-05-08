@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <?php
   header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
   header("Last-Modified: " . gmdate("D, d M Y H:i:s")." GMT");
@@ -9,10 +9,14 @@
 
   $id=$_GET['id'];
   $change=$_GET['change'];
-  $dblocation = "localhost";
-  $dbname = "chitover";
-  $dbuser = "root";
-  $dbpasswd = "root";
+ // $dblocation = "localhost";
+ // $dbname = "chitover";
+ // $dbuser = "root";
+ // $dbpasswd = "root";
+  $dblocation = "mysql48.1gb.ru";
+  $dbname = "gb_wst_test1";
+  $dbuser = "gb_wst_test1";
+  $dbpasswd = "10910916aghj";
   $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
   if (!$dbcnx)
   {
@@ -45,7 +49,7 @@
  $textarea_mail=$_POST['textarea_mail'];
  $textarea_phone=$_POST['textarea_phone'];
  $query = "UPDATE $table SET surname='$textarea_surname',name='$textarea_name',father='$textarea_f',mainmail='$textarea_mainmail',mail='$textarea_mail',phone='$textarea_phone' WHERE id=".$id;
- $res = mysql_query($query)or die(mysql_error());
+ $res = mysql_query($query);
  $row=mysql_fetch_array($res,MYSQL_ASSOC); 
  $query = "SELECT * FROM $table WHERE id=".$id; 
  $res = mysql_query($query)or die(mysql_error());
@@ -64,7 +68,7 @@ else
 	<meta charset="utf-8" />
 	<link href="facedata.css" rel="stylesheet">
 </head>
-<body>
+
 <table><tr>
  <td><div id="logo"><img src="images/chitover_logo.jpg" ></div></td>
  <td width="80%" align="right" valign="top"><div id="topright_menu">
@@ -110,7 +114,7 @@ E_mail и  телефон<br><br>
 <input type=submit name=sbmtAccaunt value="Изменить">
 </form>
 </div> 
-</body>
+
 <script language="javascript" type="text/javascript"> 
 
 function lib()

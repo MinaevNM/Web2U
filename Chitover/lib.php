@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <?php
 $id=$_GET['id'];
 
@@ -14,7 +14,7 @@ choosefile.style.display = 'block';
 	<meta charset="utf-8" />
 	<link href="lib.css" rel="stylesheet">
 </head>
-<body>
+
 
 <!--<form style="display:none" id="choosefile" method="get">-->
  <div id="choosefile" style="display:none"><p><input  type="file" name="f" id="fid" size="50">
@@ -54,18 +54,32 @@ choosefile.style.display = 'block';
 <form action='' method='post'>
 <table id="bookslist">
 <td></td><td>Удалить</td><td></td>
-<tr><td>Как закалялась сталь.doc</td><td align="center"><input type='checkbox' name='check[]' value=''/></td><td><button>Читать</button></td></tr>
-<tr><td>Кавказский пленник.</td><td align="center"><input type='checkbox' name='check[]' value=''/></td><td><button>Читать</button></td></tr>
-<tr><td>Архипелаг ГУЛАГ.doc</td><td align="center"><input type='checkbox' name='check[]' value=''/></td><td><button>Читать</button></td></tr>
-<tr><td>Преступление и наказание.doc</td><td align="center"><input type='checkbox' name='check[]' value=''/></td><td><button>Читать</button></td></tr>
-<tr><td>История России.</td><td align="center"><input type='checkbox' name='check[]' value=''/></td><td><button>Читать</button></td></tr>
+<tr><td>Как закалялась сталь.doc</td><td align="center"><button id="cross" onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button>Читать</button></td></tr>
+<tr><td>Кавказский пленник.</td><td align="center"><button id="cross"  onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button>Читать</button></td></tr>
+<tr><td>Архипелаг ГУЛАГ.doc</td><td align="center"><button id="cross"  onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button>Читать</button></td></tr>
+<tr><td>Преступление и наказание.doc</td><td align="center"><button id="cross"  onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button>Читать</button></td></tr>
+<tr><td>История России.</td><td align="center"><button id="cross"  onmouseover="redcross()" onmouseout="blackcross()" onclick="delete()">X</button></td><td><button>Читать</button></td></tr>
 <!--<input type='submit' name='check[]' value='Удалить' />-->
 </table>
 </form>
 </div>
-</body>
+
 
 <script language="javascript" type="text/javascript"> 
+function redcross()
+{
+ event.srcElement.style.color="red";
+}
+function blackcross()
+{
+ event.srcElement.style.color="black";
+}
+function deletebook(r)
+{
+ //window.location.href="http://"+window.location.host+"/reader1/facedata.php?change=0&id=<?php echo $id ?>";
+ /*alert(r.parentNode.parentNode.rowIndex);
+ document.getElementById("bookslist").deleteRow(r.parentNode.parentNode.rowIndex);*/
+}
 function dan()
 {
  window.location.href="http://"+window.location.host+"/reader1/facedata.php?change=0&id=<?php echo $id ?>";
@@ -73,6 +87,7 @@ function dan()
 function read()
 {
  fileName=document.getElementById("fid").value;
+// alert(fileName);
  var pos = fileName.lastIndexOf("\\");
  fileName = fileName.substr(pos+1);
  window.location.href="http://"+window.location.host+"/reader1/index1.php?id=<?php echo $id ?>&b="+fileName;

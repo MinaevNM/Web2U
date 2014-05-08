@@ -2,9 +2,14 @@
 <script language="javascript" type="text/javascript">
 function begin(t)
 {
-mas=t.split(" ");
-readword(mas,0);
+if (t !== null)
+{
+ mas=t.split(" ");
+ readword(mas,0);
 }
+
+}
+
 function readword(mas,i)
 {
 if(i<mas.length)
@@ -13,68 +18,70 @@ if(i<mas.length)
  setTimeout(function() {readword(mas,i)}, 500);
 }
 }
-</script>
-<?php
-//$word = new COM("Word.Application");
-//$tempfile="C:\apache\localhost\www\reader1\lib\dam.doc";
-//$word->Documents->Open($tempfile);
-//echo $word->ActiveDocument->Content; 
-//$word->ActiveDocument->Close(false); 
-//$word->Quit(); 
-//unset($word); 
 
+function begin_docx(t)
+{
+alert(t);
+document.getElementById("text1").value="                                       "+t
+}
+
+</script>
+
+
+
+<?php
 $fileName=$_GET['b'];
 
 if($fileName != "")
 {
-
- /* $dblocation = "localhost";
-  $dbname = "chitover";
-  $dbuser = "root";
-  $dbpasswd = "root";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
-  
-  $table="library";
-  $query = "SELECT * FROM $table WHERE id = 5";
-  $res = mysql_query($query)or die(mysql_error()); 
-  $number = mysql_num_rows($res);
-  $row=mysql_fetch_array($res);
-  
-  $file_text = "";*/
-  
-  //$file_name="http://".$_SERVER['HTTP_HOST']."/".$row['text'];
-  $file_name="lib/".$fileName;
+  $file_name="./lib/".$fileName;
+ 
   $fd = fopen($file_name,"r");
   if (!$fd)   {
    echo "Error! Could not open the file.";
    die;
   }
- 
   $ft=file_get_contents($file_name);
   fclose ($fd); 
+  if(strstr($file_name,".txt"))
+  {
   $str=json_encode($ft);
   echo('<script type="text/javascript" language="javascript">this.onload=function() {begin('.$str.')}</script>');
+  }
+else
+{
+$content = read_file_docx($file_name);
+if($content !== false) {
+ $str=nl2br($content);
+ $str=json_encode($str);
+ echo ('<script type="text/javascript" language="javascript">this.onload=function() {begin('.$str.')}</script>'); 
 }
+else {
+    echo 'Couldn\'t read the file. Please check that file.';
+} 
+}
+}
+
+function read_file_docx($filename){
+    $striped_content = '';
+    $content = '';
+    if(!$filename || !file_exists($filename)) return false;
+    $zip = zip_open($filename);
+    if (!$zip || is_numeric($zip)) return false;
+    while ($zip_entry = zip_read($zip)) {
+        if (zip_entry_open($zip, $zip_entry) == FALSE) continue;
+        if (zip_entry_name($zip_entry) != "word/document.xml") continue;
+        $content .= zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
+        zip_entry_close($zip_entry);
+    }
+    zip_close($zip);
+    $content = str_replace('</w:r></w:p></w:tc><w:tc>', " ", $content);
+    $content = str_replace('</w:r></w:p>', "\r\n", $content);
+    $striped_content = strip_tags($content);
+	return $striped_content;
+}
+
+
 
 ?>
 <html>
@@ -93,7 +100,7 @@ if($fileName != "")
   <li><a href="entr.htm"><img src="images/entr.jpg"></a></li>
   <li><a href="info.htm"><img src="images/info.jpg"></a></li>
   <li><a href="refer.htm"><img src="images/zoom.jpg"></a></li>
-  <li><a href="forum.htm"><img src="images/forum.jpg"></a></li>
+  <li><a href="./phpBB32/index.php"><img src="images/forum.jpg"></a></li>
   <li><a id="alib"><img src="images/lib.jpg"></a></li>
   <li><a href="plus.htm"><img src="images/plus.jpg"></a></li>
   <li><a href="face.php"><img src="images/face.jpg"></a></li>
