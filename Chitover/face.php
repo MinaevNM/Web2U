@@ -45,7 +45,7 @@ if($login != "" && $pswrd != "" )
   $id=$row[id];
 
   $addr=$_SERVER['HTTP_HOST'];
-  header("Location: http://".$addr."/reader1/index1.php?id=".$id);
+  header("Location: http://".$addr."/reader1/index.php?id=".$id);
 }
 
 
@@ -57,7 +57,7 @@ if($login != "" && $pswrd != "" )
 </head>
 <div id="logo" align="center">
    <br>
-   <img id="logotip" src="images/chitover_logo.jpg" ><br><br>
+   <a href="index.php"><img src="images/chitover_logo.jpg" border="0" ></a><br><br>
   Войдите в аккаунт, чтобы перейти к Читовер  <br><br><br><br> 
 </div>
 <div id="content" align="center">
@@ -77,19 +77,16 @@ if($login != "" && $pswrd != "" )
 <br><br>
 <div id="footer" align="center">
  <ul>
-  <li><a href="http://www.yandex.ru"><img src="images/ya.jpg" onmouseover="this.src='images/ya1.jpg'" onmouseout="this.src='images/ya.jpg'"></a></li>
-  <li><a href="http://www.google.com"><img src="images/colbw.jpg" onmouseover="this.src='images/col.jpg'" onmouseout="this.src='images/colbw.jpg'"></a></li>
-  <li><a href="http://www.vk.com"><img src="images/b.jpg" onmouseover="this.src='images/b1.jpg'" onmouseout="this.src='images/b.jpg'"></a></li>
-  <li><a href="http://www.facebook.com"><img src="images/f.jpg" onmouseover="this.src='images/f1.jpg'" onmouseout="this.src='images/f.jpg'"></a></li>
-  <li><a href="http://www.twitter.com"><img src="images/t.jpg" onmouseover="this.src='images/t1.jpg'" onmouseout="this.src='images/t.jpg'"></a></li>
-  <li><a href="http://www.livejournal.com"><img src="images/pen.jpg" onmouseover="this.src='images/pen1.jpg'" onmouseout="this.src='images/pen.jpg'"></a></li>
-  <li><a href="http://www.mail.ru"><img src="images/mail.jpg" onmouseover="this.src='images/mail1.jpg'" onmouseout="this.src='images/mail.jpg'"></a></li>
-  <li><a href="#"><img src="images/ph.jpg" onmouseover="this.src='images/ph1.jpg'" onmouseout="this.src='images/ph.jpg'"></a></li>
-  <li><a href="http://www.instagram.com"><img src="images/photo.jpg" onmouseover="this.src='images/photo1.jpg'" onmouseout="this.src='images/photo.jpg'"></a></li>
-  <li><a href="http://www.odnoklassniki.ru"><img src="images/man.jpg" onmouseover="this.src='images/man1.jpg'" onmouseout="this.src='images/man.jpg'" ></a></li>
-  <li><a href="#"><img src="images/point.jpg" onmouseover="this.src='images/point1.jpg'" onmouseout="this.src='images/point.jpg'"></a></li>
-  <li><a href="#"><img src="images/left.jpg"></a></li>
-  <li><a href="#"><img src="images/right.jpg"></a></li>
+  <li><a href="http://www.yandex.ru"><img src="images/ya.jpg" border="0" onmouseover="this.src='images/ya1.jpg'" onmouseout="this.src='images/ya.jpg'"></a></li>
+  <li><a href="http://www.google.com"><img src="images/colbw.jpg" border="0" onmouseover="this.src='images/col.jpg'" onmouseout="this.src='images/colbw.jpg'"></a></li>
+  <li><a href="http://www.vk.com"><img src="images/b.jpg" border="0" onmouseover="this.src='images/b1.jpg'" onmouseout="this.src='images/b.jpg'"></a></li>
+  <li><a href="http://www.facebook.com"><img src="images/f.jpg" border="0" onmouseover="this.src='images/f1.jpg'" onmouseout="this.src='images/f.jpg'"></a></li>
+  <li><a href="http://www.twitter.com"><img src="images/t.jpg" border="0" onmouseover="this.src='images/t1.jpg'" onmouseout="this.src='images/t.jpg'"></a></li>
+  <li><a href="http://www.livejournal.com"><img src="images/pen.jpg" border="0" onmouseover="this.src='images/pen1.jpg'" onmouseout="this.src='images/pen.jpg'"></a></li>
+  <li><a href="http://www.mail.ru"><img src="images/mail.jpg" border="0" onmouseover="this.src='images/mail1.jpg'" onmouseout="this.src='images/mail.jpg'"></a></li>
+  <li><a href="http://www.instagram.com"><img src="images/photo.jpg" border="0" onmouseover="this.src='images/photo1.jpg'" onmouseout="this.src='images/photo.jpg'"></a></li>
+  <li><a href="http://www.odnoklassniki.ru"><img src="images/man.jpg" border="0" onmouseover="this.src='images/man1.jpg'" onmouseout="this.src='images/man.jpg'" ></a></li>
+  <li><a href="http://www.foursquare.com"><img src="images/point.jpg" border="0" onmouseover="this.src='images/point1.jpg'" onmouseout="this.src='images/point.jpg'"></a></li>
  </ul>
 </div> 
 

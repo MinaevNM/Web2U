@@ -22,16 +22,17 @@ choosefile.style.display = 'block';
 <!--</form> -->
   
 <table><tr>
- <td><div id="logo"><img src="images/chitover_logo.jpg" ></div></td>
+ <td><div id="logo"><a href="index.php"><img src="images/chitover_logo.jpg" border="0">
+</a></div></td>
  <td width="80%" align="right" valign="top"><div id="topright_menu">
   <ul>
-   <li><a href="entr.htm"><img src="images/entr.jpg"></a></li>
-   <li><a href="info.htm"><img src="images/info.jpg"></a></li>
-   <li><a href="refer.htm"><img src="images/zoom.jpg"></a></li>
-   <li><a href="forum.htm"><img src="images/forum.jpg"></a></li>
-   <li><a href="lib.php"><img src="images/lib.jpg"></a></li>
-   <li><a href="plus.htm"><img src="images/plus.jpg"></a></li>
-   <li><a href="face.php"><img src="images/face.jpg"></a></li>
+   <li><a href="entr.htm"><img src="images/entr.jpg" border="0"></a></li>
+   <li><a href="info.htm"><img src="images/info.jpg" border="0"></a></li>
+   <li><a href="refer.htm"><img src="images/zoom.jpg" border="0"></a></li>
+   <li><a href="forum.htm"><img src="images/forum.jpg" border="0"></a></li>
+   <li><a href="lib.php"><img src="images/lib.jpg" border="0"></a></li>
+   <li><a href="plus.htm"><img src="images/plus.jpg" border="0"></a></li>
+   <li><a href="face.php"><img src="images/face.jpg" border="0"></a></li>
   </ul>
  </div></td>
  </tr></table>
@@ -43,7 +44,7 @@ choosefile.style.display = 'block';
 </ul></tr></table>
 </div>
 <hr id="hr">
-<div id="logomini" ><img src="images/chitover_logomini.jpg" ></div>
+<div id="logomini" ><a href="index.php"><img src="images/chitover_logomini.jpg" border="0" ></a></div>
 <div id="text">- это универсальная программа для чтения книг в новом формате. Чтобы загрузить книгу, просто выберите файл.
 </div>
 <button id="select" onclick="choose()">Выберите файл</button>
@@ -90,7 +91,7 @@ function read()
 // alert(fileName);
  var pos = fileName.lastIndexOf("\\");
  fileName = fileName.substr(pos+1);
- window.location.href="http://"+window.location.host+"/reader1/index1.php?id=<?php echo $id ?>&b="+fileName;
+ window.location.href="http://"+window.location.host+"/reader1/index.php?id=<?php echo $id ?>&b="+fileName;
  
 }
 

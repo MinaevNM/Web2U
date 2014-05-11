@@ -6,7 +6,7 @@
 </head>
 <body>
 <br>
-<a href="index.php">На главную</a>
+<a href="index.php"><img src="images/chitover_logo.jpg" border="0"></a>
 <div id="title" align="center">
 <h2>Готовая библиотека книг</h2>
 </div>
@@ -121,7 +121,7 @@
    {
     $row=mysql_fetch_array($res);
     $str=$row[5];
-	$ul .= "<li><button><img src='".$row[img]."'></button></li>";
+	$ul .= "<li><button><img src='".$row[img]."' ></button></li>";
    } 
    $ul .= "</ul>";
    echo $ul;

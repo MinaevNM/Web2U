@@ -73,7 +73,7 @@ if($login != "" && $pswrd != "" && $repeatPswrd != "" && $cod != "")
   $res = mysql_query($query)or die(mysql_error());  
   $id=mysql_fetch_array($res,MYSQL_ASSOC);
   $addr=$_SERVER['HTTP_HOST'];
-  header("Location: http://".$addr."/reader1/index1.php?id=".$id['id']);
+  header("Location: http://".$addr."/reader1/index.php?id=".$id['id']);
  }
 }
 ?>
