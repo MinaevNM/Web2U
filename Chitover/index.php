@@ -9,6 +9,7 @@ if (t !== null)
 {
  mas=t.split(" ");
  jQuery("#slider1").slider({  min: 0,  max: mas.length - 1,  range: false });  
+ $('#slider3').slider('value', 1);
  readword();
 }
 
@@ -25,6 +26,10 @@ function readword()
    var speed = $('#slider3').slider("option", "value");
    speed = 50 * (speed + 1); 
    $('#slider1').slider('value', i);
+   document.getElementById("textarea2").value="All words     " + mas.length + "     " + 
+                                              "Red words     " + i +  "                             " +
+                                              "Left words    " + (mas.length - i) +  "                            " +
+                                              "Reading speed " + speed + "words/min                           ";      
    timeoutID = setTimeout(function() {readword()}, 60000 / speed);
   }
 }
@@ -123,17 +128,20 @@ function read_file_docx($filename){
  </ul>
 </div>
 <p class="aligner">
-<div id="content">
+<!--<div id="content" style="transform: scale(2); -webkit-transform: scale(2); -webkit-transform-origin: 0 0; -moz-transform: scale(2); -moz-transform-origin: 0 0; -o-transform: scale(2); -o-transform-origin: 0 0; -ms-transform: scale(2); -ms-transform-origin: 0 0;">            -->
+<div id="content">	
    <img id="logo" src="images/chitover_logo.jpg" ><br>
-   <p id="params" style="display:none"><textarea readonly name="textarea2" cols="40" rows=8">
-        всего слов        10000
+   <p id="params" style="display:none">
+   <textarea readonly id="textarea2" name=\"textarea2\" cols=\"40\" rows=8\"> 	
+        всего слов           10000
 	прочитано слов    2000
 	осталось слов     8000
 	всего времени     2часа 40мин
 	прочитано времени 35 минут
 	осталось времени  2 часа 05 мин
         скорость чтения   250 слов.мин 	
-   </textarea></p>
+   </textarea>
+   </p>
    <button id="up" onclick="openparams()"><img src="images/up.jpg"></button>
    <p>
    <a href="#"><img id="fold" src="images/fold.jpg" border="0"></a>
