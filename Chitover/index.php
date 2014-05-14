@@ -26,10 +26,14 @@ function readword()
    var speed = $('#slider3').slider("option", "value");
    speed = 50 * (speed + 1); 
    $('#slider1').slider('value', i);
+   var lefttimeinminutes = (mas.length - i) / speed;
+   lefttimeinminutes = Math.floor(lefttimeinminutes);
+   
    document.getElementById("textarea2").value="All words     " + mas.length + "     " + 
                                               "Red words     " + i +  "                             " +
                                               "Left words    " + (mas.length - i) +  "                            " +
-                                              "Reading speed " + speed + "words/min                           ";      
+                                              "Reading speed " + speed + "words/min                           " +
+                                              "Time left " + lefttimeinminutes / 60 + "h" + lefttimeinminutes % 60 + "m";      
    timeoutID = setTimeout(function() {readword()}, 60000 / speed);
   }
 }
@@ -102,6 +106,11 @@ function read_file_docx($filename){
 	<meta charset="utf-8" />
 	<link href="style.css" rel="stylesheet">
 	<link href="slider.css" rel="stylesheet">
+<script type="text/javascript" src="//vk.com/js/api/openapi.js?112"></script>
+
+<script type="text/javascript">
+  VK.init({apiId: API_ID, onlyWidgets: true});
+</script>
 
 <style>
  .aligner {
@@ -112,6 +121,14 @@ function read_file_docx($filename){
 
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript" src="jquery-1.6.1.min.js" ></script>  
 <script type="text/javascript" src="jquery.ui-slider.js"></script> 
 
@@ -163,11 +180,13 @@ function read_file_docx($filename){
 </div>
 </p>
 <div id="footer" align="center">
+ <div class="fb-like" data-href="http://calc-w2you-r.1gb.ru/reader1/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
  <ul>
   <li><a href="http://www.yandex.ru"><img src="images/ya.jpg" border="0" onmouseover="this.src='images/ya1.jpg'" onmouseout="this.src='images/ya.jpg'"></a></li>
   <li><a href="http://www.google.com"><img src="images/colbw.jpg" border="0" onmouseover="this.src='images/col.jpg'" onmouseout="this.src='images/colbw.jpg'"></a></li>
   <li><a href="http://www.vk.com"><img src="images/b.jpg" border="0" onmouseover="this.src='images/b1.jpg'" onmouseout="this.src='images/b.jpg'"></a></li>
-  <li><a href="http://www.facebook.com"><img src="images/f.jpg" border="0" onmouseover="this.src='images/f1.jpg'" onmouseout="this.src='images/f.jpg'"></a></li>
+  <!--<li><a href="http://www.facebook.com"><img src="images/f.jpg" border="0" onmouseover="this.src='images/f1.jpg'" onmouseout="this.src='images/f.jpg'"></a></li>-->
   <li><a href="http://www.twitter.com"><img src="images/t.jpg" border="0" onmouseover="this.src='images/t1.jpg'" onmouseout="this.src='images/t.jpg'"></a></li>
   <li><a href="http://www.livejournal.com"><img src="images/pen.jpg" border="0" onmouseover="this.src='images/pen1.jpg'" onmouseout="this.src='images/pen.jpg'"></a></li>
   <li><a href="http://www.mail.ru"><img src="images/mail.jpg" border="0" onmouseover="this.src='images/mail1.jpg'" onmouseout="this.src='images/mail.jpg'"></a></li>
