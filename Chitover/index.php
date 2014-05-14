@@ -3,11 +3,13 @@
 var IsStopped = false;
 var mas;
 var timeoutID;
+var timeinmillis;
 function begin(t)
 {
 if (t !== null)
 {
  mas=t.split(" ");
+ timeinmillis = 0;
  jQuery("#slider1").slider({  min: 0,  max: mas.length - 1,  range: false });  
  $('#slider3').slider('value', 1);
  readword();
@@ -33,7 +35,9 @@ function readword()
                                               "Red words     " + i +  "                             " +
                                               "Left words    " + (mas.length - i) +  "                            " +
                                               "Reading speed " + speed + "words/min                           " +
-                                              "Time left " + lefttimeinminutes / 60 + "h" + lefttimeinminutes % 60 + "m";      
+                                              "Time left " + Math.floor(lefttimeinminutes / 60) + "h" + lefttimeinminutes % 60 + "m" + "                       " +
+                                              "Time spend " + Math.floor(timeinmillis / 60000 / 60) + "h" + Math.floor(timeinmillis / 60000) + "m";
+   timeinmillis += 60000 / speed;
    timeoutID = setTimeout(function() {readword()}, 60000 / speed);
   }
 }
