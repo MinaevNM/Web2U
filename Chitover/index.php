@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <script language="javascript" type="text/javascript">
 var IsStopped = false;
 var mas;
@@ -52,11 +52,11 @@ document.getElementById("text1").value="                                       "
                          
 <?php
 $fileName=$_GET['b'];
-
+$id=$_GET['id'];
 if($fileName != "")
 {
-  $file_name="./lib/".$fileName;
- 
+  //$file_name="./lib/".$fileName;
+ $file_name="/home/virtwww/w_calc-w2you-r_f81af168/http/reader1/lib/".$id."/".$fileName;
   $fd = fopen($file_name,"r");
   if (!$fd)   {
    echo "Error! Could not open the file.";
@@ -139,13 +139,26 @@ function read_file_docx($filename){
 
 <div id="menu" align="right">
  <ul>
-  <li><a href="entr.htm"><img src="images/entr.jpg" border="0"></a></li>
+  <li id="m1"><a href="entr.htm"><img src="images/entr.jpg" border="0"></a></li>
   <li><a href="info.htm"><img src="images/info.jpg" border="0"></a></li>
-  <li><a href="refer.htm"><img src="images/zoom.jpg" border="0"></a></li>
-  <li><a href="./phpBB32/index.php"><img src="images/forum.jpg" border="0"></a></li>
+  <li><a href="#"  onclick="refer()"><img src="images/zoom.jpg" border="0"></a></li>
+  <li><a href="./phpBB3/index.php"><img src="images/forum.jpg" border="0"></a></li>
   <li><a id="alib"><img src="images/lib.jpg" border="0"></a></li>
-  <li><a href="plus.htm"><img src="images/plus.jpg" border="0"></a></li>
+  <li><a href="./wordpress/wp-admin"><img src="images/bl.jpg" border="0"></a></li>
   <li><a href="face.php"><img src="images/face.jpg" border="0"></a></li>
+ </ul>
+</div>
+<canvas id="canvas" width="1000" height="40" style="visibility:hidden" ></canvas>
+
+<div id="menu_refer" align="right" style="visibility:hidden">
+ <ul>
+  <li id="r1">вход</li>
+  <li>блог с комментариями и статьями</li>
+  <li>справка</li>
+  <li>форум</li>
+  <li>библиотека</li>
+  <li>блог</li>
+  <li>личный кабинет</li>
  </ul>
 </div>
 <p class="aligner">
@@ -165,7 +178,7 @@ function read_file_docx($filename){
    </p>
    <button id="up" onclick="openparams()"><img src="images/up.jpg"></button>
    <p>
-   <a href="#"><img id="fold" src="images/fold.jpg" border="0"></a>
+   <a href="fold.php?id=<?php echo $id ?>"><img id="fold" src="images/fold.jpg" border="0"></a>
    <textarea id="text1" readonly name="textarea1" cols="40" rows="1"></textarea>
    </p>
     <br><br><br><br><br>
@@ -255,5 +268,31 @@ function startstop()
   IsStopped = !IsStopped;
   readword();
 } 
+function refer()
+{
+if(menu_refer.style.visibility == 'hidden')
+{
+  menu_refer.style.visibility='visible';
+  var x_begin=document.getElementById("r1").offsetLeft;
+  var y_begin=document.getElementById("r1").offsetTop;
+  var x_end=document.getElementById("m1").offsetLeft;
+  var y_end=document.getElementById("m1").offsetTop;
+  var canvas = document.getElementById("canvas");
+  var cvs = canvas.getContext("2d");
+  cvs.beginPath();
+  cvs.moveTo(x_begin,y_begin);
+  cvs.lineTo(x_end,y_end);
+  cvs.closePath();
+  cvs.stroke();
+  canvas.style.visibility='visible';
+}
+else
+{
+  menu_refer.style.visibility='hidden';
+  var canvas = document.getElementById("canvas"); 
+  var cvs = canvas.getContext("2d");
+  canvas.style.visibility='hidden';
+}
+}
 </script>             	
 </html>

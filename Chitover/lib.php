@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <?php
 $id=$_GET['id'];
-
+$dir='/home/virtwww/w_calc-w2you-r_f81af168/http/reader1/lib/'.$id;
+if(!is_dir($dir))
+ {mkdir($dir);}
+$i=0;
+if ($handle = opendir($dir)) {
+    while (false !== ($file = readdir($handle))) {
+	    if ($file === '.' || $file === '..') continue;
+        $books[$i]=$file; $i++;
+    }
+    closedir($handle); 
+}
 ?>
 <script language="javascript" type="text/javascript">
 function choose()
@@ -16,11 +26,14 @@ choosefile.style.display = 'block';
 </head>
 
 
-<!--<form style="display:none" id="choosefile" method="get">-->
+<!--<form style="display:none" id="choosefile" method="get">
  <div id="choosefile" style="display:none"><p><input  type="file" name="f" id="fid" size="50">
- <input type="submit" value="Отправить" onclick="loadfile()"></p></div>
+ <input type="submit" value="Отправить" onclick="loadfile()"></p></div>-->
 <!--</form> -->
-  
+ <form action="upload.php?id=<?php echo $id ?>" style="display:none" id="choosefile" method="post" enctype="multipart/form-data">
+ <p><input  type="file" name="f" id="fid" size="50">
+ <input type="submit" value="Отправить" ></p>
+</form>  
 <table><tr>
  <td><div id="logo"><a href="index.php"><img src="images/chitover_logo.jpg" border="0">
 </a></div></td>
@@ -49,20 +62,17 @@ choosefile.style.display = 'block';
 </div>
 <button id="select" onclick="choose()">Выберите файл</button>
 <input id="selection"> </input>
-<button id="read" onclick="read()">Приступить к чтению</button>
+<!--<button id="read" onclick="read()">Приступить к чтению</button>-->
 <div id="form">
 <p><b>Перечень загруженных книг</b></p><br>
-<form action='' method='post'>
+
 <table id="bookslist">
-<td></td><td>Удалить</td><td></td>
-<tr><td>Как закалялась сталь.doc</td><td align="center"><button id="cross" onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button>Читать</button></td></tr>
-<tr><td>Кавказский пленник.</td><td align="center"><button id="cross"  onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button>Читать</button></td></tr>
-<tr><td>Архипелаг ГУЛАГ.doc</td><td align="center"><button id="cross"  onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button>Читать</button></td></tr>
-<tr><td>Преступление и наказание.doc</td><td align="center"><button id="cross"  onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button>Читать</button></td></tr>
-<tr><td>История России.</td><td align="center"><button id="cross"  onmouseover="redcross()" onmouseout="blackcross()" onclick="delete()">X</button></td><td><button>Читать</button></td></tr>
-<!--<input type='submit' name='check[]' value='Удалить' />-->
+<?php for($i=0;$i<sizeof($books);$i++) { ?>
+<?php if($i == 0) echo '<tr><td></td><td>Удалить</td><td></td></tr>'; ?>
+<?php echo '<tr id="books_tr"><td>'.$books[$i].'</td><td align="center"><button id="cross" onmouseover="redcross()" onmouseout="blackcross()" onclick="deletebook(this)">X</button></td><td><button onclick="readbook('.$i.')">Читать</button></td></tr>' ?>
+<?php } ?>
 </table>
-</form>
+
 </div>
 
 
@@ -94,7 +104,14 @@ function read()
  window.location.href="http://"+window.location.host+"/reader1/index.php?id=<?php echo $id ?>&b="+fileName;
  
 }
-
+function readbook(num)
+{
+ table=document.getElementById("bookslist");
+ fileName=table.rows[num+1].cells[0].innerHTML;
+ href="http://"+window.location.host+"/reader1/index.php?id=<?php echo $id ?>&b="+fileName;
+ window.location.href=href;
+ 
+ }
 function loadfile()
 {
  fileName=document.getElementById("fid").value;

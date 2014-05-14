@@ -41,14 +41,10 @@
   $table="face";
   if($change == 1)
   {
-
- $textarea_surname=$_POST['textarea_surname'];
  $textarea_name=$_POST['textarea_name']; 
- $textarea_f=$_POST['textarea_f']; 
  $textarea_mainmail=$_POST['textarea_mainmail']; 
- $textarea_mail=$_POST['textarea_mail'];
  $textarea_phone=$_POST['textarea_phone'];
- $query = "UPDATE $table SET surname='$textarea_surname',name='$textarea_name',father='$textarea_f',mainmail='$textarea_mainmail',mail='$textarea_mail',phone='$textarea_phone' WHERE id=".$id;
+ $query = "UPDATE $table SET name='$textarea_name',mainmail='$textarea_mainmail',phone=$textarea_phone WHERE id=".$id;
  $res = mysql_query($query);
  $row=mysql_fetch_array($res,MYSQL_ASSOC); 
  $query = "SELECT * FROM $table WHERE id=".$id; 
@@ -76,9 +72,9 @@ else
    <li><a href="entr.htm"><img src="images/entr.jpg" border="0"></a></li>
    <li><a href="info.htm"><img src="images/info.jpg" border="0"></a></li>
    <li><a href="refer.htm"><img src="images/zoom.jpg" border="0"></a></li>
-   <li><a href="forum.htm"><img src="images/forum.jpg" border="0"></a></li>
+   <li><a href="./phpBB3/index.php"><img src="images/forum.jpg" border="0"></a></li>
    <li><a href="lib.php"><img src="images/lib.jpg" border="0"></a></li>
-   <li><a href="plus.htm"><img src="images/plus.jpg" border="0"></a></li>
+   <li><a href="./wordpress/wp-admin"><img src="images/bl.jpg" border="0"></a></li>
    <li><a href="face.php"><img src="images/face.jpg" border="0"></a></li>
   </ul>
  </div></td>
@@ -94,20 +90,12 @@ else
 <br>
 <div id="content_left">
 <form  method=POST action="facedata.php?change=1&id=<?php echo $id ?>">
-Ф. И. О.<br><br>
-Фамилия<br>
-<p><textarea  name="textarea_surname" id="textarea_surname" cols="40" rows="1"><?php echo $row[surname] ?></textarea></p><br>
 Имя<br>
 <p><textarea  name="textarea_name" id="textarea_name" cols="40" rows="1"><?php echo $row[name] ?></textarea></p><br>
-Отчество<br>
-<p><textarea  name="textarea_f" id="textarea_f" cols="40" rows="1"><?php echo $row[father] ?></textarea></p><br>
 </div>
 <div id="content_right">
-E_mail и  телефон<br><br>
-Основной E_mail<br>
+E_mail<br>
 <p><textarea id="ta_mainmail" name="textarea_mainmail" cols="40" rows="1"><?php echo $row[mainmail] ?></textarea></p><br>
-Резервный E_mail<br>
-<p><textarea id="ta_mail" name="textarea_mail" cols="40" rows="1"><?php echo $row[mainmail] ?></textarea></p><br>
 Телефон<br>
 <p><textarea id="ta_phone" name="textarea_phone" cols="40" rows="1"><?php echo $row[phone] ?></textarea></p>
 <br><br>

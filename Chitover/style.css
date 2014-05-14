@@ -1,6 +1,9 @@
 *{margin: 0; padding: 0;}
  #menu {height:10%; width: 50%; }
  #menu ul li {display: inline;}
+ #menu_refer {height:10%; width: 50%; padding-top: 2px; padding-right: 5px;}
+ #menu_refer ul li {display: inline;}
+ #menu_refer {float:right} 
  #content {width: 100%; padding-top: 250px; padding-bottom: 100px;}
 
  #footer {height:10%;}

@@ -68,7 +68,7 @@ if($login != "" && $pswrd != "" )
       <tr><td>Логин</td><td><input type=text name=login ></td></tr>	
 	  <tr><td>Пароль</td><td><input type=password name=pswrd ></td></tr>		  
 	  <tr><td></td><td align="right"><input type=submit name=sbmt value="Войти"></td></tr>
-	  <tr><td></td><td align="right"><a href="">Забыли пароль?</a></td></tr>
+	 <!-- <tr><td></td><td align="right"><a href="">Забыли пароль?</a></td></tr>-->
 	  </table>
 </form>
 <br>
