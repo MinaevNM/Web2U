@@ -49,6 +49,10 @@ function readword()
    document.getElementById("textarea_stat5").value="прочитано времени           " + Math.floor(timeinmillis / 60000 / 60) + "часа " + Math.floor(timeinmillis / 60000) % 60 + "мин"; 
    document.getElementById("textarea_stat6").value="осталось времени            " + Math.floor(lefttimeinminutes / 60) + "часа " + lefttimeinminutes % 60 + "мин";
    document.getElementById("textarea_stat7").value="скорость чтения             " + speed + "слов/мин";
+   var curstring ="";
+   for (var j = 0; j < 30; j++)
+     curstring = curstring.concat(mas[i + j], " ");
+   document.getElementById("textarea1").value=curstring;
    timeinmillis += 60000 / speed;
    timeoutID = setTimeout(function() {readword()}, 60000 / speed);
   }
@@ -195,7 +199,8 @@ function read_file_docx($filename){
     <div id="slider2"></div>
     <div id="slider3"></div>
    <button id="down" onclick="opentext()"><img src="images/down.jpg"></button>
-  <p id="text" style="visibility:hidden"><textarea readonly name="textarea1" cols="40" rows="5">
+  <p id="text" style="visibility:hidden">
+   <textarea readonly id="textarea1" name="textarea1" cols="40" rows="5">
     Бар - песчаная подводная отмель; 
     образуется в море на некотором расстоянии от устья реки под 
     действием морских волн.
