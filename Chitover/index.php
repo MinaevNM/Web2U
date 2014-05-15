@@ -31,12 +31,24 @@ function readword()
    var lefttimeinminutes = (mas.length - i) / speed;
    lefttimeinminutes = Math.floor(lefttimeinminutes);
    
-   document.getElementById("textarea2").value="All words     " + mas.length + "     " + 
-                                              "Red words     " + i +  "                             " +
-                                              "Left words    " + (mas.length - i) +  "                            " +
-                                              "Reading speed " + speed + "words/min                           " +
-                                              "Time left " + Math.floor(lefttimeinminutes / 60) + "h" + lefttimeinminutes % 60 + "m" + "                       " +
-                                              "Time spend " + Math.floor(timeinmillis / 60000 / 60) + "h" + Math.floor(timeinmillis / 60000) + "m";
+   /*
+        всего слов           10000
+	прочитано слов    2000
+	осталось слов     8000
+	всего времени     2часа 40мин
+	прочитано времени 35 минут
+	осталось времени  2 часа 05 мин
+        скорость чтения   250 слов.мин 	
+  */
+
+   var fulltime = Math.floor(timeinmillis / 60000) + lefttimeinminutes;
+   document.getElementById("textarea_stat1").value="всего слов                  " + mas.length;
+   document.getElementById("textarea_stat2").value="прочитано слов              " + i; 
+   document.getElementById("textarea_stat3").value="осталось слов               " + (mas.length - i);
+   document.getElementById("textarea_stat4").value="всего времени               " + Math.floor(fulltime / 60) + "часа " + fulltime % 60 + "мин"; 
+   document.getElementById("textarea_stat5").value="прочитано времени           " + Math.floor(timeinmillis / 60000 / 60) + "часа " + Math.floor(timeinmillis / 60000) % 60 + "мин"; 
+   document.getElementById("textarea_stat6").value="осталось времени            " + Math.floor(lefttimeinminutes / 60) + "часа " + lefttimeinminutes % 60 + "мин";
+   document.getElementById("textarea_stat7").value="скорость чтения             " + speed + "слов/мин";
    timeinmillis += 60000 / speed;
    timeoutID = setTimeout(function() {readword()}, 60000 / speed);
   }
@@ -166,15 +178,10 @@ function read_file_docx($filename){
 <div id="content">	
    <img id="logo" src="images/chitover_logo.jpg" ><br>
    <p id="params" style="display:none">
-   <textarea readonly id="textarea2" name=\"textarea2\" cols=\"40\" rows=8\"> 	
-        всего слов           10000
-	прочитано слов    2000
-	осталось слов     8000
-	всего времени     2часа 40мин
-	прочитано времени 35 минут
-	осталось времени  2 часа 05 мин
-        скорость чтения   250 слов.мин 	
-   </textarea>
+   <?php
+     for ($i = 1; $i <= 7; $i++)
+       echo "<textarea readonly id=\"textarea_stat".$i."\" name=\"textarea_stat".$i."\" cols=\"40\" rows=\"1\" ></textarea><br>";
+   ?>
    </p>
    <button id="up" onclick="openparams()"><img src="images/up.jpg"></button>
    <p>
