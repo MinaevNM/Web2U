@@ -4,7 +4,12 @@ if(isset($_POST['login']))
  $login=$_POST['login'];
 if(isset($_POST['pswrd'])) 
  $pswrd=$_POST['pswrd'];
-
+$id = $_GET['id'];
+if($id)
+{
+  $addr=$_SERVER['HTTP_HOST'];
+  header("Location: http://".$addr."/reader1/facedata.php?id=".$id);
+}
 if($login != "" && $pswrd != "" )
 {
  $dblocation = "mysql48.1gb.ru";
@@ -55,9 +60,18 @@ if($login != "" && $pswrd != "" )
 	<meta charset="utf-8" />
 	<link href="face.css" rel="stylesheet">
 </head>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div id="logo" align="center">
    <br>
-   <a href="index.php"><img src="images/chitover_logo.jpg" border="0" ></a><br><br>
+   <a href="index.php?id=<?php echo $id ?>"><img src="images/chitover_logo.jpg" border="0" ></a><br><br>
   Войдите в аккаунт, чтобы перейти к Читовер  <br><br><br><br> 
 </div>
 <div id="content" align="center">
@@ -76,6 +90,8 @@ if($login != "" && $pswrd != "" )
 </div>
 <br><br>
 <div id="footer" align="center">
+ <div class="fb-like" data-href="http://calc-w2you-r.1gb.ru/reader1/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
  <ul>
   <li><a href="http://www.yandex.ru"><img src="images/ya.jpg" border="0" onmouseover="this.src='images/ya1.jpg'" onmouseout="this.src='images/ya.jpg'"></a></li>
   <li><a href="http://www.google.com"><img src="images/colbw.jpg" border="0" onmouseover="this.src='images/col.jpg'" onmouseout="this.src='images/colbw.jpg'"></a></li>

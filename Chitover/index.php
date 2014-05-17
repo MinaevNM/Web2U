@@ -50,7 +50,7 @@ function readword()
    document.getElementById("textarea_stat6").value="осталось времени            " + Math.floor(lefttimeinminutes / 60) + "часа " + lefttimeinminutes % 60 + "мин";
    document.getElementById("textarea_stat7").value="скорость чтения             " + speed + "слов/мин";
    var curstring ="";
-   for (var j = 0; j < 30; j++)
+   for (var j = 0; j < 60; j++)
      curstring = curstring.concat(mas[i + j], " ");
    document.getElementById("textarea1").value=curstring;
    timeinmillis += 60000 / speed;
@@ -67,6 +67,7 @@ document.getElementById("text1").value="                                       "
 </script>
                          
 <?php
+
 $fileName=$_GET['b'];
 $id=$_GET['id'];
 if($fileName != "")
@@ -155,16 +156,16 @@ function read_file_docx($filename){
 
 <div id="menu" align="right">
  <ul>
-  <li id="m1"><a href="entr.htm"><img src="images/entr.jpg" border="0"></a></li>
-  <li><a href="info.htm"><img src="images/info.jpg" border="0"></a></li>
-  <li><a href="#"  onclick="refer()"><img src="images/zoom.jpg" border="0"></a></li>
-  <li><a href="./phpBB3/index.php"><img src="images/forum.jpg" border="0"></a></li>
-  <li><a id="alib"><img src="images/lib.jpg" border="0"></a></li>
-  <li><a href="./wordpress/wp-admin"><img src="images/bl.jpg" border="0"></a></li>
-  <li><a href="face.php"><img src="images/face.jpg" border="0"></a></li>
+  <li id="m1"><a href="index.php?id=0"  title="выход" ><img src="images/entr.jpg" border="0"></a></li>
+  <li><a href="info.php?id=<?php echo $id ?>" title="блог с комментариями и статьями"><img src="images/info.jpg" border="0"></a></li>
+  <li><a href="#" title="справка" onclick="refer()"><img src="images/zoom.jpg" border="0"></a></li>
+  <li><a href="./phpBB3/index.php" title="форум"><img src="images/forum.jpg" border="0"></a></li>
+  <li><a id="alib" title="библиотека"><img src="images/lib.jpg" border="0"></a></li>
+  <li><a href="blog.php?id=<?php echo $id ?>" title="блог" ><img src="images/bl.jpg" border="0"></a></li>
+  <li><a href="face.php?id=<?php echo $id ?>" title="личный кабинет"><img src="images/face.jpg" border="0"></a></li>
  </ul>
 </div>
-<canvas id="canvas" width="1000" height="40" style="visibility:hidden" ></canvas>
+<!--<canvas id="canvas" width="1000" height="40" style="visibility:hidden" ></canvas>-->
 
 <div id="menu_refer" align="right" style="visibility:hidden">
  <ul>
@@ -187,23 +188,20 @@ function read_file_docx($filename){
        echo "<textarea readonly id=\"textarea_stat".$i."\" name=\"textarea_stat".$i."\" cols=\"40\" rows=\"1\" ></textarea><br>";
    ?>
    </p>
-   <button id="up" onclick="openparams()"><img src="images/up.jpg"></button>
+   <button title="вывод поля параметров чтения" id="up" onclick="openparams()"><img src="images/up.jpg"></button>
    <p>
-   <a href="fold.php?id=<?php echo $id ?>"><img id="fold" src="images/fold.jpg" border="0"></a>
-   <textarea id="text1" readonly name="textarea1" cols="40" rows="1"></textarea>
+   <a href="fold.php?id=<?php echo $id ?>"  ><img title="перечень книг" id="fold" src="images/fold.jpg" border="0"></a>
+   <textarea title="основная область для чтения" id="text1" readonly name="textarea1" cols="40" rows="1"></textarea>
    </p>
     <br><br><br><br><br>
-    <button onclick="startstop()"><img width="20" height="20" id="arrow" src="images/arrow.jpg"></button>
+    <button title="старт/пауза" onclick="startstop()"><img width="20" height="20" id="arrow" src="images/arrow.jpg"></button>
 	<div id="slider1"></div>
     <a href="#"><img id="bird" src="images/bird.jpg" border="0" height="15px"></a>
     <div id="slider2"></div>
     <div id="slider3"></div>
-   <button id="down" onclick="opentext()"><img src="images/down.jpg"></button>
+   <button title="вывод области где находится текст" id="down" onclick="opentext()"><img src="images/down.jpg"></button>
   <p id="text" style="visibility:hidden">
-   <textarea readonly id="textarea1" name="textarea1" cols="40" rows="5">
-    Бар - песчаная подводная отмель; 
-    образуется в море на некотором расстоянии от устья реки под 
-    действием морских волн.
+   <textarea readonly id="textarea1" name="textarea1" cols="40" rows="10">
    </textarea></p>
 
 </div>
@@ -249,7 +247,7 @@ range: false
 }); 
 jQuery("#slider3").slider({  
 min: 1,  
-max: 5,
+max: 19,
 range: false 
 }); 
 </script> 
@@ -285,7 +283,7 @@ function refer()
 if(menu_refer.style.visibility == 'hidden')
 {
   menu_refer.style.visibility='visible';
-  var x_begin=document.getElementById("r1").offsetLeft;
+ /* var x_begin=document.getElementById("r1").offsetLeft;
   var y_begin=document.getElementById("r1").offsetTop;
   var x_end=document.getElementById("m1").offsetLeft;
   var y_end=document.getElementById("m1").offsetTop;
@@ -296,15 +294,16 @@ if(menu_refer.style.visibility == 'hidden')
   cvs.lineTo(x_end,y_end);
   cvs.closePath();
   cvs.stroke();
-  canvas.style.visibility='visible';
+  canvas.style.visibility='visible';*/
 }
 else
 {
   menu_refer.style.visibility='hidden';
-  var canvas = document.getElementById("canvas"); 
+ /* var canvas = document.getElementById("canvas"); 
   var cvs = canvas.getContext("2d");
-  canvas.style.visibility='hidden';
+  canvas.style.visibility='hidden';*/
 }
 }
+
 </script>             	
 </html>

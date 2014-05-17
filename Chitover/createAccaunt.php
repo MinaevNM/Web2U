@@ -15,11 +15,8 @@ if(isset($_POST['repeatPswrd']))
  $repeatPswrd=$_POST['repeatPswrd'];
 if(isset($_POST['cod'])) 
  $cod=$_POST['cod'];
-$textarea_surname=$_POST['textarea_surname'];
 $textarea_name=$_POST['textarea_name'];
-$textarea_f=$_POST['textarea_f'];
 $textarea_mainmail=$_POST['textarea_mainmail'];
-$textarea_mail=$_POST['textarea_mail'];
 $textarea_phone=$_POST['textarea_phone'];
 if($login != "" && $pswrd != "" && $repeatPswrd != "" && $cod != "")
 {
@@ -67,7 +64,7 @@ if($login != "" && $pswrd != "" && $repeatPswrd != "" && $cod != "")
   
   $table="face";
  
-  $query = "INSERT INTO $table(login,pswrd,repeatPswrd,cod,surname,name,father,mainmail,mail,phone) VALUES ('$login','$pswrd','$repeatPswrd','$cod','$textarea_surname','$textarea_name','$textarea_f','$textarea_mainmail','$textarea_mail','$textarea_phone')";
+  $query = "INSERT INTO $table(login,pswrd,repeatPswrd,cod,name,mainmail,phone) VALUES ('$login','$pswrd','$repeatPswrd','$cod','$textarea_name','$textarea_mainmail',$textarea_phone)";
   $res = mysql_query($query)or die(mysql_error());  
   $query = "SELECT id FROM $table WHERE login='$login'";
   $res = mysql_query($query)or die(mysql_error());  
@@ -93,11 +90,8 @@ if($login != "" && $pswrd != "" && $repeatPswrd != "" && $cod != "")
 	  <tr><td>Введите Пароль (от 6 до 10 латинских букв/цифр)</td><td><input type=password name=pswrd ></td></tr>
 	  <tr><td>Повторите Пароль </td><td><input type=password name=repeatPswrd ></td></tr>	
 	  <tr><td>Введите кодовое слово для восстановления пароля (от 6 до 10 латинских букв)</td><td><input type=text name=cod ></td></tr>		  
-      <tr><td>Фамилия</td><td><textarea  name="textarea_surname" id="textarea_surname" cols="40" rows="1"></textarea></td></tr>	
       <tr><td>Имя</td><td><textarea  name="textarea_name" id="textarea_name" cols="40" rows="1"></textarea></p><br></td></tr>	
-      <tr><td>Отчество</td><td><textarea  name="textarea_f" id="textarea_f" cols="40" rows="1"></textarea></p><br></td></tr>	
       <tr><td>Основной E_mail</td><td><textarea id="ta_mainmail" name="textarea_mainmail" cols="40" rows="1"></textarea></p><br></td></tr>	
-      <tr><td>Резервный E_mail</td><td><textarea id="ta_mail" name="textarea_mail" cols="40" rows="1"></textarea></p><br></td></tr>	
       <tr><td>Телефон</td><td><textarea id="ta_phone" name="textarea_phone" cols="40" rows="1"></textarea></p></td></tr>	
 	  <tr><td></td><td align="right"><input type=submit name=sbmtAccaunt value="Подтверждение ввода"></td></tr>
 	  </table>
