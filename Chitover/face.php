@@ -1,26 +1,42 @@
 <!DOCTYPE html>
+<form action='index.php' method='post' name='tophp'>
+<input type=hidden name=idr id=idr value=''>
+</form>
+<form action='facedata.php' method='post' name='tophp_fd'>
+<input type=hidden name=idfd id=idfd value=''>
+</form>
+<script language="javascript" type="text/javascript"> 
+function formtofd(id)
+{
+ var f = document.forms['tophp_fd'];
+ document.getElementById('idfd').value=id;
+ f.submit();
+}
+
+function formtoindex(id)
+{
+ var f = document.forms['tophp'];
+ document.getElementById('idr').value=id;
+ f.submit();
+}
+</script>
 <?php
 if(isset($_POST['login']))
  $login=$_POST['login'];
 if(isset($_POST['pswrd'])) 
  $pswrd=$_POST['pswrd'];
-$id = $_GET['id'];
+$id = $_POST['idf'];
+
 if($id)
 {
-  $addr=$_SERVER['HTTP_HOST'];
-  header("Location: http://".$addr."/reader1/facedata.php?id=".$id);
+ echo "<script type=\"text/javascript\">formtofd(".$id.");</script>";
 }
 if($login != "" && $pswrd != "" )
 {
- $dblocation = "mysql48.1gb.ru";
+  $dblocation = "mysql48.1gb.ru";
   $dbname = "gb_wst_test1";
   $dbuser = "gb_wst_test1";
   $dbpasswd = "10910916aghj";
-  
- // $dblocation = "localhost";
- // $dbname = "chitover";
- // $dbuser = "root";
-//  $dbpasswd = "root";
   $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
   if (!$dbcnx)
   {
@@ -32,7 +48,6 @@ if($login != "" && $pswrd != "" )
     echo "datebase is unavailable.";
 	exit();
   }
-
   mysql_query("set character_set_client='cp1251'");
   mysql_query("set character_set_results='cp1251'");
   mysql_query("set character_set_collation_connection='cp1251'");
@@ -42,18 +57,13 @@ if($login != "" && $pswrd != "" )
   mysql_query("set character_set_system='cp1251'");
   mysql_query("set character_set_collation_datebase='cp1251'");
   mysql_query("set character_set_collation_server='cp1251'");
-  
   $table="face";
   $query = "SELECT * FROM $table WHERE login='$login' AND pswrd='$pswrd'";
   $res = mysql_query($query)or die(mysql_error()); 
   $row=mysql_fetch_array($res,MYSQL_ASSOC);
   $id=$row[id];
-
-  $addr=$_SERVER['HTTP_HOST'];
-  header("Location: http://".$addr."/reader1/index.php?id=".$id);
+  echo "<script type=\"text/javascript\"> formtoindex(".$id.");</script>";
 }
-
-
  ?>
 <html>
 <head>
@@ -71,7 +81,7 @@ if($login != "" && $pswrd != "" )
 
 <div id="logo" align="center">
    <br>
-   <a href="index.php?id=<?php echo $id ?>"><img src="images/chitover_logo.jpg" border="0" ></a><br><br>
+   <a href="#" onclick="formtoindex(<?php echo $id ?>)"><img src="images/chitover_logo.jpg" border="0" ></a><br><br>
   Войдите в аккаунт, чтобы перейти к Читовер  <br><br><br><br> 
 </div>
 <div id="content" align="center">
@@ -80,7 +90,7 @@ if($login != "" && $pswrd != "" )
       <img id="logotip" src="images/chitover_avatar.jpg" ><br>
 	  <table cellspacing="10" cellpadding="0">
       <tr><td>Логин</td><td><input type=text name=login ></td></tr>	
-	  <tr><td>Пароль</td><td><input type=password name=pswrd ></td></tr>		  
+	  <tr><td>Пароль</td><td><input type=password name=pswrd ></td></tr>
 	  <tr><td></td><td align="right"><input type=submit name=sbmt value="Войти"></td></tr>
 	 <!-- <tr><td></td><td align="right"><a href="">Забыли пароль?</a></td></tr>-->
 	  </table>
@@ -107,4 +117,3 @@ if($login != "" && $pswrd != "" )
 </div> 
 
 </html>
-

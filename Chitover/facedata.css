@@ -8,3 +8,7 @@
  #content_right {position: absolute; top: 240px; left: 450px; }
  #button_change {position: relative; left: 260px; }
  textarea {overflow: hidden;}
+button {
+   border: 0px;
+   background: white;
+ }

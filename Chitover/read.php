@@ -1,5 +1,5 @@
 <?php    
-$filename=$_GET['filename'];
+$filename=$_POST['filename'];
 read_file_docx($filename);
                                
 function read_file_docx($filename){

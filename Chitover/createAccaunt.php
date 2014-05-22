@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<form action='index.php' method='post' name='tophp'>
+<input type=hidden name=idr id=idr value=''>
+</form>
+<script language="javascript" type="text/javascript"> 
+function formtoindex(id)
+{
+ var f = document.forms['tophp'];
+ document.getElementById('idr').value=id;
+ f.submit();
+}
+</script>
 <?php 
  header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
   header("Last-Modified: " . gmdate("D, d M Y H:i:s")." GMT");
@@ -30,13 +41,7 @@ if($login != "" && $pswrd != "" && $repeatPswrd != "" && $cod != "")
     echo "пароль повторен неверно <br>";
   else
   {
-   echo "аккаунт создан";
-
-  //$dblocation = "localhost";
-  //$dbname = "chitover";
- // $dbuser = "root";
-  //$dbpasswd = "root";
-    $dblocation = "mysql48.1gb.ru";
+  $dblocation = "mysql48.1gb.ru";
   $dbname = "gb_wst_test1";
   $dbuser = "gb_wst_test1";
   $dbpasswd = "10910916aghj";
@@ -61,16 +66,29 @@ if($login != "" && $pswrd != "" && $repeatPswrd != "" && $cod != "")
   mysql_query("set character_set_system='cp1251'");
   mysql_query("set character_set_collation_datebase='cp1251'");
   mysql_query("set character_set_collation_server='cp1251'");
-  
-  $table="face";
+
  
-  $query = "INSERT INTO $table(login,pswrd,repeatPswrd,cod,name,mainmail,phone) VALUES ('$login','$pswrd','$repeatPswrd','$cod','$textarea_name','$textarea_mainmail',$textarea_phone)";
+  
+  $my_table="face";
+  $query = "SELECT id FROM $my_table WHERE login='$login'";
+  $res = mysql_query($query) or die(mysql_error());
+  if (mysql_num_rows($res) != 0)
+  {
+    echo "Login already exists";
+    exit();
+  }
+ 
+  
+  echo "аккаунт создан"; 
+  $query = "INSERT INTO $my_table(login,pswrd,repeatPswrd,cod,name1,mainmail1,phone1,admin) VALUES ('$login','$pswrd','$repeatPswrd','$cod','$textarea_name','$textarea_mainmail',$textarea_phone, 0)";
   $res = mysql_query($query)or die(mysql_error());  
-  $query = "SELECT id FROM $table WHERE login='$login'";
+  $query = "SELECT id FROM $my_table WHERE login='$login'";
   $res = mysql_query($query)or die(mysql_error());  
   $id=mysql_fetch_array($res,MYSQL_ASSOC);
-  $addr=$_SERVER['HTTP_HOST'];
-  header("Location: http://".$addr."/reader1/index.php?id=".$id['id']);
+  $tablename = "books".$id['id'];
+  $query = "CREATE TABLE $tablename (book VARCHAR(100) NOT NULL,word INT(10));";
+  mysql_query($query)or die(mysql_error());
+  echo "<script type=\"text/javascript\"> formtoindex(".$id['id'].");</script>";
  }
 }
 ?>

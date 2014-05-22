@@ -11,4 +11,9 @@
  #selection {position: absolute; top: 280px; left: 170px;}
  #read {position: absolute; top: 280px; left: 320px;}
  #form {position: absolute; top: 340px; left: 120px;}
- #cross{background-color: transparent; border: 0px; }
+ #form_adm {position: absolute; top: 340px; left: 620px;}
+ #cross{background-color: transparent; border: 0px; } 
+ #mylib {
+   border: 0px;
+   background: white;
+ }

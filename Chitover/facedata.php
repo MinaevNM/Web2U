@@ -1,5 +1,12 @@
 <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link href="facedata.css" rel="stylesheet">
+</head>
+<body onload="buttonload()">
 <?php
+  $id=$_POST['idfd'];
   header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
   header("Last-Modified: " . gmdate("D, d M Y H:i:s")." GMT");
   header("Cache-Control: no-cache, must-revalidate");
@@ -7,12 +14,8 @@
   header("Cache-Control: max-age=0", false);
   header("Pragma: no-cache");
 
-  $id=$_GET['id'];
-  $change=$_GET['change'];
- // $dblocation = "localhost";
- // $dbname = "chitover";
- // $dbuser = "root";
- // $dbpasswd = "root";
+
+  $change=$_POST['fnfd'];
   $dblocation = "mysql48.1gb.ru";
   $dbname = "gb_wst_test1";
   $dbuser = "gb_wst_test1";
@@ -58,24 +61,21 @@ else
  }
  ?>
 
-<html>
-<head>
-	<meta charset="utf-8" />
-	<link href="facedata.css" rel="stylesheet">
-</head>
+
 
 <table><tr>
- <td><div id="logo"><a href="index.php?id=<?php echo $id ?>"><img src="images/chitover_logo.jpg" border="0" ></a></div></td>
+ <td><div id="logo"><a href="#" onclick="ind()"><img src="images/chitover_logo.jpg" border="0" ></a></div></td>
  <td width="80%" align="right" valign="top"><div id="topright_menu">
   <ul>
-   <li><a href="index.php?id=0" title="выход"><img src="images/entr.jpg" border="0"></a></li>
-   <li><a href="info.php?id=<?php echo $id ?>" title="блог с комментариями и статьями"><img src="images/info.jpg" border="0"></a></li>
-   <li><a href="#" title="справка" onclick="refer()"><img src="images/zoom.jpg" border="0"></a></li>
-   <li><a href="./phpBB3/index.php" title="форум"><img src="images/forum.jpg" border="0"></a></li>
-   <li><a href="lib.php?id=<?php echo $id ?>" title="библиотека"><img src="images/lib.jpg" border="0"></a></li>
-   <li><a href="blog.php?id=<?php echo $id ?>" title="блог"><img src="images/bl.jpg" border="0"></a></li>
-   <li><a href="face.php?id=<?php echo $id ?>" title="личный кабинет"><img src="images/face.jpg" border="0"></a></li>
-  </ul>
+  <li id="m1"><a href="#" onclick="exit()" title="выход" ><img src="images/entr.jpg" border="0"></a></li>
+  <li><a href="#" onclick="info()" title="блог с комментариями и статьями"><img src="images/info.jpg" border="0"></a></li>
+  <li><a href="#" title="справка" onclick="refer()"><img src="images/zoom.jpg" border="0"></a></li>
+  <li><a href="./phpBB3/index.php" title="форум"><img src="images/forum.jpg" border="0"></a></li>
+ <!--  <li><a href="#" onclick="lib()"  title="библиотека"><img src="images/lib.jpg" border="0"></a></li>-->
+ <li><button id="mylib" disabled onclick="lib()" title="библиотека" ><img src="images/lib.jpg" border="0"></button></li>
+  <li><a href="#" onclick="blog()" title="блог" ><img src="images/bl.jpg" border="0"></a></li>
+  <li><a title="личный кабинет" onclick="face()"><img src="images/face.jpg" border="0"></a></li>
+ </ul>
  </div></td>
  </tr></table>
 
@@ -88,7 +88,9 @@ else
 <hr id="hr">
 <br>
 <div id="content_left">
-<form  method=POST action="facedata.php?change=1&id=<?php echo $id ?>">
+<form  method=POST action="facedata.php">
+<input type=hidden name=idfd id=idfd value='<?php echo $id ?>'>
+<input type=hidden name=fnfd id=fnfd value=1>
 Имя<br>
 <p><textarea  name="textarea_name" id="textarea_name" cols="40" rows="1"><?php echo $row[name1] ?></textarea></p><br>
 </div>
@@ -101,38 +103,87 @@ E_mail<br>
 <input type=submit name=sbmtAccaunt value="Изменить">
 </form>
 </div> 
+<form action='lib.php' method='post' name='tophp_lib'>
+<input type=hidden name=idl id=idl value=''>
+</form>
+<form action='fold.php' method='post' name='tophp_fold'>
+<input type=hidden name=idfo id=idfo value=''>
+</form>
+<form action='index.php' method='post' name='tophp_exit'>
+<input type=hidden name=ide id=ide value=''>
+</form>
+<form action='info.php' method='post' name='tophp_info'>
+<input type=hidden name=idi id=idi value=''>
+</form>
+<form action='blog.php' method='post' name='tophp_blog'>
+<input type=hidden name=idb id=idb value=''>
+</form>
+<form action='face.php' method='post' name='tophp_face'>
+<input type=hidden name=idf id=idf value=''>
+</form>
+<form action='index.php' method='post' name='tophp_ind'>
+<input type=hidden name=idr id=idr value=''>
+</form>
 
 <script language="javascript" type="text/javascript"> 
-
-function lib()
+function exit()
 {
- window.location.href="http://"+window.location.host+"/reader1/lib.php?id=<?php echo $id ?>";
+	var f = document.forms['tophp_exit'];
+    document.getElementById("ide").value = 0;
+    f.submit();
+}
+function info()
+{
+	var f = document.forms['tophp_info'];
+    document.getElementById("idi").value = "<?php echo $id ?>";
+    f.submit();
+}
+function blog()
+{
+	var f = document.forms['tophp_blog'];
+    document.getElementById("idb").value = "<?php echo $id ?>";
+    f.submit();
+}
+function face()
+{
+	var f = document.forms['tophp_face'];
+    document.getElementById("idf").value = "<?php echo $id ?>";
+    f.submit();
+}
+function lib()
+{ 
+	var f = document.forms['tophp_lib'];
+    document.getElementById("idl").value = "<?php echo $id ?>";
+    f.submit();
+}
+function fold()
+{ 
+	var f = document.forms['tophp_fold'];
+    document.getElementById("idfo").value = "<?php echo $id ?>";
+    f.submit();
+}
+function ind()
+{ 
+	var f = document.forms['tophp_ind'];
+    document.getElementById("idr").value = "<?php echo $id ?>";
+    f.submit();
 }
 function refer()
 {
 if(menu_refer.style.visibility == 'hidden')
 {
   menu_refer.style.visibility='visible';
- /* var x_begin=document.getElementById("r1").offsetLeft;
-  var y_begin=document.getElementById("r1").offsetTop;
-  var x_end=document.getElementById("m1").offsetLeft;
-  var y_end=document.getElementById("m1").offsetTop;
-  var canvas = document.getElementById("canvas");
-  var cvs = canvas.getContext("2d");
-  cvs.beginPath();
-  cvs.moveTo(x_begin,y_begin);
-  cvs.lineTo(x_end,y_end);
-  cvs.closePath();
-  cvs.stroke();
-  canvas.style.visibility='visible';*/
 }
 else
 {
   menu_refer.style.visibility='hidden';
- /* var canvas = document.getElementById("canvas"); 
-  var cvs = canvas.getContext("2d");
-  canvas.style.visibility='hidden';*/
 }
+}
+function buttonload()
+{
+id="<?php echo $id ?>";
+if(id)
+ document.getElementById("mylib").disabled=false;
 }
 </script>
 </html>
