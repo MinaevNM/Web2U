@@ -1,0 +1,347 @@
+* {padding: 0;margin: 0;}
+html { 
+  background: url(i/bg.jpg) no-repeat center bottom  fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@font-face {font-family: 'AGOpus Oblique';src: url('AGOpus-Oblique.ttf');}
+@font-face {font-family: 'AGOpus';src: url('AGOpus.ttf');}
+
+.wrap {margin: 0 auto;width: 1024px;}
+.head {float: left;width: 100%;height: 101px;margin: 28px 0 0 0;}
+.head .logo {float: left;width: 199px;border-right:1px solid #BDBDBD;height: inherit;border-bottom:1px solid #BDBDBD;}
+.head .logo a {float: left; width: 150px; text-align: center; padding: 0 25px; }
+.head .logo a img {float: left;width: 100%;}
+.head .main_menu {float: left; border-bottom: 1px solid #BDBDBD; width: 555px; padding: 0 0 6px 45px; }
+.head .main_menu ul li {list-style-type: none;float: left;padding: 0;margin: 0;}
+.head .main_menu ul li a {float: left; margin: 0; padding: 75px 0 0 0; color: #241be0; text-decoration: none; width: 111px; text-align: center; }
+
+
+.head .main_menu ul li.staff a {background: url('i/icon_menu_staff.png') center top no-repeat;}
+.head .main_menu ul li.tasks a {background: url('i/icon_menu_tasks.png') center top no-repeat;}
+.head .main_menu ul li.invoice a {background: url('i/icon_menu_invoice.png') center top no-repeat;}
+.head .main_menu ul li.statistics a {background: url('i/icon_menu_statistics.png') center top no-repeat;}
+.head .main_menu ul li.filters a {background: url('i/icon_menu_filters.png') center top no-repeat;}
+
+
+
+
+
+
+
+.head .profile {position: relative; float: right;width: 180px;height: 100px;-webkit-border-radius: 20px;border-radius: 20px;background: #E9F8FD;border: 1px solid #E2E2E2;margin: 0;}
+.head .profile .name {color: #000;font-size: 12px;font-family: "AGOpus";font-weight: bold;margin: 15px;width: 150px;float: left;}
+.head .profile span.logout {float: right;position: absolute;bottom: 10px;right: 18px;}
+.head .profile span.logout a {float: left;font-size: 13px;color: #701CCC;font-style: italic;text-decoration: none;font-family: "Arial";font-weight: bold;}
+
+.container {float: left;width: 100%;}
+.container .sidebar {float: left; width: 179px; border-right: 1px solid #BDBDBD; padding: 28px 0 0 20px; }
+.container #content {float: right; width: 779px; margin: 15px 0 0 45px; }
+
+
+.block.menu {float: left;width: 100%;margin: 0 0 40px 0;}
+.block.menu h2 {color: #000;font-size: 12px;font-family: "AGOpus";font-weight: bold;margin: 0 0 30px 0;}
+.block.menu .content ul li {list-style: none;float: left;width: 100%;margin: 0;padding: 0;}
+.block.menu .content ul li a {float: left;width: 100%;color: #4B8EB7;font-size: 12px;font-family: "AGOpus";font-weight: bold;text-decoration: none;margin: 0 0 8px 0;}
+
+h1 {font-family: "AGOpus Oblique";color: #000;font-size: 19px;margin: 0 0 30px 0;}
+
+
+
+
+table {width: 100%;border-collapse: collapse;text-align: center;}
+table thead {background: #70C7E2;}
+table thead tr th:first-child {-webkit-border-radius: 15px 0 0 15px;border-radius: 15px 0 0 15px;}
+table thead tr th:last-child {-webkit-border-radius: 0 15px 15px 0;border-radius: 0 15px 15px 0;border-right: 0 none;}
+
+table thead tr th {color: #fff; font-size: 12px; font-family: "AGOpus Oblique"; padding: 8px 0; font-style: italic; border-right: 1px solid #78BDBD;}
+
+table tbody tr td {color: #3a86b3; font-size: 12px; font-family: "AGOpus Oblique";font-weight: bold; padding: 8px 0; font-style: italic; border-right: 1px solid #BDBDBD;}
+table tbody tr td:last-child {border-right: 0 none;}
+
+
+
+
+
+
+.add_task input {background: #70C7E2; border: 1px solid #BCBCBD; color: #fff; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 15px; border-radius: 15px; padding: 10px; width: 130px; margin: 0 0 20px 0; }
+
+
+
+body.staff form.search_add_remove {float: left;width: 100%;margin: 0 0 20px 0;}
+body.staff form.search_add_remove .search {float: left;}
+body.staff form.search_add_remove .search input[type='text'] {float: left;border: 0 none;width: 266px;padding: 5px;}
+body.staff form.search_add_remove .search input[type='submit'] {background: #70C7E2; border: 1px solid #BCBCBD; color: #fff; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; margin: -2px 0 0 0; }
+
+body.staff form.search_add_remove .add_user {float: left; background: #70C7E2; border: 1px solid #BCBCBD; color: #fff; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; margin: -2px 0 0 80px; text-decoration: none; }
+
+
+body.staff form.search_add_remove #remove_user {float: right; color: #000; border: 0 none; font-size: 19px; cursor: pointer; font-family: "AGOpus"; font-weight: bold; background: url('i/icon_x.png') left center no-repeat; padding: 0 0 0 20px; }
+
+
+
+
+
+
+
+
+
+body.add_staff #content {background: url('i/birds.png') right top no-repeat;}
+
+form#add_staff {float: left;width: 100%;}
+form#add_staff > input.button {margin: 20px 0 0 0;float: left; background: #70C7E2; border: 1px solid #BCBCBD; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
+
+form#add_staff {width: 220px;float: left;}
+form#add_staff .surname {float: left;width: 100%;}
+form#add_staff .surname label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .surname input {float: left; width: 206px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#add_staff .name {float: left;width: 100%;}
+form#add_staff .name label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .name input {float: left; width: 206px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#add_staff .patronymic {float: left;width: 100%;}
+form#add_staff .patronymic label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .patronymic input {float: left; width: 206px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#add_staff .sex {float: left;width: 100%;}
+form#add_staff .sex label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .sex select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#add_staff fieldset.date {float: left;width: 100%;border: 0 none;}
+form#add_staff fieldset.date legend {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+
+form#add_staff fieldset.date .year {float: left;width: 100%;margin: 0 0 10px 0;}
+form#add_staff fieldset.date .year label {float: left; width: 50px; color: #0093DA; font-size: 12px; font-weight: bold;margin: 2px 0 0 0; }
+form#add_staff fieldset.date .year select {float: left; border: 1px solid #7B7B7B; padding: 1px 3px; }
+
+form#add_staff fieldset.date .month {float: left;width: 100%;margin: 0 0 10px 0;}
+form#add_staff fieldset.date .month label {float: left; width: 50px; color: #0093DA; font-size: 12px; font-weight: bold;margin: 2px 0 0 0; }
+form#add_staff fieldset.date .month select {float: left; border: 1px solid #7B7B7B; padding: 1px 3px; }
+
+form#add_staff fieldset.date .day {float: left;width: 100%;margin: 0 0 10px 0;}
+form#add_staff fieldset.date .day label {float: left; width: 50px; color: #0093DA; font-size: 12px; font-weight: bold;margin: 2px 0 0 0; }
+form#add_staff fieldset.date .day select {float: left; border: 1px solid #7B7B7B; padding: 1px 3px; }
+
+
+form#add_staff .phone {float: left;width: 100%;}
+form#add_staff .phone label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .phone input {float: left; width: 206px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#add_staff .mail {float: left;width: 100%;}
+form#add_staff .mail label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .mail input {float: left; width: 206px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#add_staff .city {float: left;width: 100%;}
+form#add_staff .city label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .city select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#add_staff .address {float: left;width: 100%;}
+form#add_staff .address label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .address input {float: left; width: 206px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#add_staff .position {float: left;width: 100%;}
+form#add_staff .position label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#add_staff .position select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+
+
+
+
+
+
+
+
+
+form#filters {float: left;width: 100%;}
+
+form#filters fieldset.left {width: 240px;border: 0 none;float: left;margin: 0 80px 0 0;}
+form#filters fieldset.right {width: 240px;border: 0 none;float: left;}
+
+form#filters fieldset > div {float: left;width: 100%;}
+form#filters fieldset label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#filters fieldset select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#filters .actions {float: left;width: 100%;}
+form#filters .actions input.button {margin: 20px 0 0 0;float: left;cursor: pointer; background: #70C7E2; border: 1px solid #BCBCBD; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
+
+
+
+
+
+
+
+
+
+form#client {float: left;width: 100%;}
+
+form#client fieldset.left {width: 240px;border: 0 none;float: left;margin: 0 80px 0 0;}
+
+form#client .surname {float: left;width: 100%;}
+form#client .surname label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .surname input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client .name {float: left;width: 100%;}
+form#client .name label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .name input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client .patronymic {float: left;width: 100%;}
+form#client .patronymic label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .patronymic input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client .sex {float: left;width: 100%;}
+form#client .sex label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .sex select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+
+form#client .phone {float: left;width: 100%;}
+form#client .phone label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .phone input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client .city {float: left;width: 100%;}
+form#client .city label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .city select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client .address {float: left;width: 100%;}
+form#client .address label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .address input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#client .locations {float: left;width: 100%;}
+form#client .locations label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .locations select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client .name_competitor {float: left;width: 100%;}
+form#client .name_competitor label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .name_competitor input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#client .How_give {float: left;width: 100%;}
+form#client .How_give label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .How_give input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+
+form#client fieldset.right {width: 240px;border: 0 none;float: left;margin: 0 80px 0 0;}
+
+
+
+form#client .add_venue {float: left;width: 100%;}
+form#client .add_venue label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .add_venue select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#client .status {float: left;width: 100%;}
+form#client .status label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .status select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#client .where_know_us {float: left;width: 100%;}
+form#client .where_know_us label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .where_know_us select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client .messages_manager {float: left;}
+form#client .messages_manager label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client .messages_manager textarea {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#client .date label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+
+
+form#client_audit .messages_audit {float: left; width: 280px; margin: 0 54px 0 0; }
+form#client_audit .messages_audit label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client_audit .messages_audit textarea {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+
+form#client_audit fieldset.left {float: left;width: 240px;border: 0 none;margin: 0 80px 0 0;}
+form#client_audit fieldset.right {width: 240px;border: 0 none;float: left;}
+
+form#client_audit h2 {font-family: "AGOpus Oblique";color: #000;font-size: 19px;margin: 30px 0 30px 0;float: left;width: 100%;}
+
+
+
+
+
+
+fieldset.client_message_date {border: 0 none;}
+fieldset.client_message_date .messages_manager {float: left;width: 335px;}
+
+
+form#client_audit .else {float: left;border: 0 none;}
+form#client_audit .else h3 {color: #000;float: left;width: 100%;font-size: 15px;font-family: "AGOpus";margin: 20px 0 10px 0;}
+
+
+form#client_audit .plot_number {float: left;width: 220px;}
+form#client_audit .plot_number label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client_audit .plot_number input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#client_audit .contract_number {float: left;width: 220px;}
+form#client_audit .contract_number label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client_audit .contract_number input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client_audit .land_area {float: left;width: 100%;}
+form#client_audit .land_area label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client_audit .land_area select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+
+form#client_audit .parameters_the_deal {float: left;width: 100%;}
+form#client_audit .parameters_the_deal label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client_audit .parameters_the_deal select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+form#client_audit .utensils {float: left;width: 100%;}
+form#client_audit .utensils label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client_audit .utensils select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+
+form#client_audit .contract_value {float: left;width: 220px;}
+form#client_audit .contract_value label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client_audit .contract_value input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+form#client_audit .kv {float: left;width: 220px;}
+form#client_audit .kv label {float: left;width: 100%;color: #0093DA;font-size: 12px;font-weight: bold;margin: 8px 0 10px 0;}
+form#client_audit .kv input {float: left; width: 226px; border: 1px solid #7B7B7B; padding: 4px 6px; }
+
+
+
+form#client .actions input.button {margin: 20px 0 0 0; float: left; cursor: pointer; background: #70C7E2; border: 1px solid #BCBCBD; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
+form#client_audit .actions input.button {margin: 20px 0 0 0; float: left; cursor: pointer; background: #70C7E2; border: 1px solid #BCBCBD; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
+
+
+.date.audit {float: left;}
+
+
+
+
+
+.login {background: url('i/bg_enter.jpg') no-repeat; width: 569px; margin: 100px auto; height: 333px;position: relative;}
+.login form {float: left; margin: 215px 0 0 45px; }
+.login form input[type="text"] {border: 1px solid #7DB5CA; padding: 10px; background: #ADD0E3; width: 220px; margin: 0 0 4px 0; }
+.login form input[type="password"] {border: 1px solid #7DB5CA; padding: 10px; background: #ADD0E3; width: 220px; margin: 0 0 4px 0; }
+
+.login form input[type="submit"] {background: #70C7E2; border: 1px solid #637c8a; color: #3b37f4; font-size: 21px; font-family: "AGOpus"; -webkit-border-radius: 12px; border-radius: 12px; padding: 10px; width: 100px; margin: 0 0 20px 0; position: absolute; right: 50px; bottom: 56px; }
+
+.login .re_pass {float: right; position: absolute; bottom: 41px; right: 44px; color: #3b37f4; font-size: 14px; font-family: "AGOpus"; text-decoration: none; font-weight: bold; }
+
+
+
+
+
+
