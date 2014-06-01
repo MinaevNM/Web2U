@@ -1,12 +1,15 @@
 <!doctype html>
+<?php 
+include 'dbconnect.php';
+?>
 <head>
 	<meta charset="UTF-8">
-	<title>Родные Просторы</title>
+         <title>Р РѕРґРЅС‹Рµ РїСЂРѕСЃС‚РѕСЂС‹</title>	
 	<script src="jquery-2.1.1.min.js"></script>
 	<script src="all.js"></script>
 	<link rel="stylesheet" href="all.css">
 </head>
-<body class="staff">
+<body link="#4B8EB7" alink="#4B8EB7"  class="staff">
 	<div class="wrap">
 		<div class="head">
 			<div class="logo">
@@ -14,49 +17,26 @@
 			</div>
 			<div class="main_menu">
 				<ul>
-					<li class="staff"><a href="staff.php?fio=<?php echo $_GET['fio'];?>">‘®ваг¤­ЁЄЁ</a></li>
-					<li class="tasks"><a href="tasks.php?fio=<?php echo $_GET['fio'];?>">Задачи</a></li>
-					<li class="invoice"><a href="invoice.php?fio=<?php echo $_GET['fio'];?>">Счета</a></li>
-					<li class="statistics"><a href="statistics.php?fio=<?php echo $_GET['fio'];?>">Статистика</a></li>
-					<li class="filters"><a href="filters.php?fio=<?php echo $_GET['fio'];?>">Фильтры</a></li>
+					<li class="staff"><a href="staff.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">РЎРѕС‚СЂСѓРґРЅРёРєРё</a></li>
+					<li class="tasks"><a href="tasks.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Р—Р°РґР°С‡Рё</a></li>
+					<li class="invoice"><a href="invoice.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">РЎС‡РµС‚Р°</a></li>
+					<li class="statistics"><a href="statistics.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">РЎС‚Р°С‚РёСЃС‚РёРєР°</a></li>
+					<li class="filters"><a href="filters.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Р¤РёР»СЊС‚СЂС‹</a></li>
 				</ul>
 			</div>
 			<div class="profile">
 				<span class="name"><?php echo $_GET['fio']?></span>
-				<span class="logout"><a href="/logout">Выйти</a></span>
+				<span class="logout"><a href="/logout.php">Р’С‹Р№С‚Рё</a></span>
 			</div>
 		</div>
 		<div class="container">
 			<div class="sidebar">
 				<div class="block menu">
-					<h2>Все сотрудники:</h2>
+					<h2>Р’СЃРµ СЃРѕС‚СЂСѓРґРЅРёРєРё:</h2>
 					<div class="content">
 						<ul>
                                                         <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+  dbconnect();
                                                                                                                
   $table="staff";
                                
@@ -82,101 +62,79 @@
 					</div>
 				</div>
 				<div class="block menu">
-					<h2>Категории сотрудников:</h2>
+					<h2>РљР°С‚РµРіРѕСЂРёРё СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ:</h2>
 					<div class="content">
 						<ul>
                                                         <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+  dbconnect();
                                                                                                                
   $table="staff";
                                
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 1");
-  echo "<li><a href=\"#\">Менеджеры (".mysql_num_rows($res).")</a></li>";
+  echo "<li><a href=\"#\">РњРµРЅРµРґР¶РµСЂС‹ (".mysql_num_rows($res).")</a></li>";
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 2");
-  echo "<li><a href=\"#\">Аудиторы (".mysql_num_rows($res).")</a></li>"; ?>
+  echo "<li><a href=\"#\">РђСѓРґРёС‚РѕСЂС‹ (".mysql_num_rows($res).")</a></li>"; ?>
 
 						</ul>
 					</div>
 				</div>
 				<div class="block menu">
 				  <div class="content">
-				    <a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>">Список покупателей:</a>
+                                    <h2><a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>&id=<?php echo $_GET['id'];?>">РЎРїРёСЃРѕРє РїРѕРєСѓРїР°С‚РµР»РµР№:</a></h2>
 				  </div>
 				</div>
 
 			</div>
 			<div id="content">
 				<div class="title_page">
-					<h1>Сотрудники</h1>
-					<form action="" class="search_add_remove">
+					<h1>РџРѕРєСѓРїР°С‚РµР»Рё</h1>
+					<form action="search_client.php" class="search_add_remove">
 						<div class="search">
 							<input type="text" name="search" id="search" size="20" value="">
-							<input type="submit" class="button" value="Поиск">
+							<input type="submit" class="button" value="РџРѕРёСЃРє">
 						</div>
-						<a href="add-staff.php?fio=<?php echo $_GET['fio'];?>" class="add_user">Создать пользователя</a>
-						<input class="button" type="button" name="button" value="Удалить" id="remove_user">
+						<?php
+  dbconnect();
+                                                                                                               
+  $table="staff";
+
+  $id = $_GET['id'];  
+  $res = mysql_query("SELECT * FROM $table WHERE ID = '$id'");
+ 
+  $row = mysql_fetch_array($res);
+  if ($row['Position'] == '1')
+	echo "<a href=\"client.php?fio=".$_GET['fio']."&id=".$_GET['id']."\" class=\"add_user\">РЎРѕР·РґР°С‚СЊ РїРѕРєСѓРїР°С‚РµР»СЏ</a>";
+						?>
+					
 					</form>
+					<form action="" class="search_add_remove">
 					<table>
 					  <thead>
 					  	<tr>
-					  	  <th>Имя</th>
-					  	  <th>Категория</th>
-					  	  <th>Почта</th>
-					  	  <th>Телефон</th>
+						<?php
+  dbconnect();
+                                                                                                               
+  $table="staff";
+
+  $id = $_GET['id'];  
+  $res = mysql_query("SELECT * FROM $table WHERE ID = '$id'");
+ 
+  $row = mysql_fetch_array($res);
+  if ($row['Position'] == '2')
+     echo  "<th>РЈРґР°Р»РёС‚СЊ</th><th>Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</th>";
+						  ?>
+					  	  <th>Р¤РРћ</th>
+					  	  <th>РЎС‚Р°С‚СѓСЃ</th>
+					  	  <th>Р”Р°С‚Р° Р·Р°РєР°Р·Р°</th>
+					  	  <th>РўРµР»РµС„РѕРЅ</th>
 					  	</tr>
 					  </thead>
 					  <tbody>
                                                 <?php
            
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+  dbconnect();
                                                                                                                
-  $table="staff";
+  $table="clients";
                                
   $res = mysql_query("SELECT * FROM $table");
 
@@ -185,19 +143,40 @@
          echo "<tr>";
  
          $row = mysql_fetch_array($res, MYSQL_ASSOC);
-          
-         $obj = mysql_fetch_field($res, 2);
-         echo "<td>".$row[$obj->name]."</td>";
-         $obj = mysql_fetch_field($res, 9);
-         if ($row[$obj->name] == '1')
-           echo "<td>ЊҐ­Ґ¤¦Ґа</td>";
-         else if ($row[$obj->name] == '2')
-           echo "<td>Аудитор</td>";
-         $obj = mysql_fetch_field($res, 10);
-         echo "<td>".$row[$obj->name]."</td>";
-         $obj = mysql_fetch_field($res, 6);
-         echo "<td>".$row[$obj->name]."</td>";
-  
+
+		 $table="staff";
+		 $id = $_GET['id'];
+         $res2 = mysql_query("SELECT * FROM $table WHERE ID = '$id'");
+         $row2 = mysql_fetch_array($res2);
+         if ($row2['Position'] == '2')
+		 {
+		 	 echo "<td><a border=\"0\" href=\"delete_client.php?fio=".$_GET['fio']."&id=".$_GET['id']."&del=".$row['id']."\"><img src=\"i\icon_x.png\"></a></td>";
+			 echo "<td><a border=\"0\" href=\"edit_client.php?fio=".$_GET['fio']."&id=".$_GET['id']."&edit=".$row['id']."\"><img width=\"20\" height=\"20\" src=\"i\edit.png\"></a></td>";
+	     }
+		 echo "<td>".$row['Surname']." ".$row['Name']." ".$row['Patronymic']."</td>";
+		 echo "<td>";
+         switch ($row['Status'])
+         {
+         case '1':
+           echo "РђРєС‚РёРІРЅР°СЏ РїСЂРѕСЂР°Р±РѕС‚РєР°";
+           break;
+         case '2':
+           echo "Р’ СЂР°Р±РѕС‚Рµ";
+           break;
+         case '3': 
+           echo "РљСѓРїРёР»";
+           break;
+         case '4': 
+           echo "Р”РѕС…Р»С‹Р№";
+           break;
+         case '5': 
+           echo "РџРµСЂСЃРїРµРєС‚РёРІРЅС‹Р№";
+           break;
+         }
+         echo "</td>";
+	 echo "<td>".$row['DatePicker']."</td>";
+	 echo "<td>".$row['Phone']."</td>";
+         
          echo "</tr>";     
   }                
 
@@ -205,6 +184,7 @@
                                                  ?>
 					  </tbody>
 					</table>
+					</form>
 				</div>
 			</div>
 		</div>

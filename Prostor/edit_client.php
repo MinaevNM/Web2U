@@ -30,7 +30,7 @@
 			</div>
 			<div class="profile">
 				<span class="name"><?php echo $_GET['fio'];?></span>
-				<span class="logout"><a href="/logout">Выйти</a></span>
+				<span class="logout"><a href="/logout.php">Выйти</a></span>
 			</div>
 		</div>
 		<div class="container">
@@ -78,7 +78,9 @@
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 1");
   echo "<li><a href=\"#\">Менеджеры (".mysql_num_rows($res).")</a></li>";
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 2");
-  echo "<li><a href=\"#\">Аудиторы (".mysql_num_rows($res).")</a></li>"; ?>
+  echo "<li><a href=\"#\">Аудиторы (".mysql_num_rows($res).")</a></li>"; 
+
+  ?>
 
 						</ul>
 					</div>
@@ -93,7 +95,7 @@
 			<div id="content">
 				<div class="title_page">
 					<h1>Клиентская карточка (поля для заполнения менеджером)</h1>
-					<form action="add-client.php" id="client">
+					<form id="client">
 						<fieldset class="left">
 							<div class="surname">
 								<label for="surname">Фамилия</label>

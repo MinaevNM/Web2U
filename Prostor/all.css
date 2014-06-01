@@ -92,7 +92,7 @@ body.staff form.search_add_remove #remove_user {float: right; color: #000; borde
 body.add_staff #content {background: url('i/birds.png') right top no-repeat;}
 
 form#add_staff {float: left;width: 100%;}
-form#add_staff > input.button {margin: 20px 0 0 0;float: left; background: #70C7E2; border: 1px solid #BCBCBD; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
+form#add_staff > input.button {margin: 20px 0 0 0;float: left; background: #70C7E2; border: none; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
 
 form#add_staff {width: 220px;float: left;}
 form#add_staff .surname {float: left;width: 100%;}
@@ -173,7 +173,7 @@ form#filters fieldset label {float: left;width: 100%;color: #0093DA;font-size: 1
 form#filters fieldset select {float: left; width: 100%; border: 1px solid #7B7B7B; padding: 4px 6px; }
 
 form#filters .actions {float: left;width: 100%;}
-form#filters .actions input.button {margin: 20px 0 0 0;float: left;cursor: pointer; background: #70C7E2; border: 1px solid #BCBCBD; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
+form#filters .actions input.button {margin: 20px 0 0 0;float: left;cursor: pointer; background: #70C7E2; border: none; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
 
 
 
@@ -321,7 +321,7 @@ form#client_audit .kv input {float: left; width: 226px; border: 1px solid #7B7B7
 
 
 
-form#client .actions input.button {margin: 20px 0 0 0; float: left; cursor: pointer; background: #70C7E2; border: 1px solid #BCBCBD; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
+form#client .actions input.button {margin: 20px 0 0 0; float: left; cursor: pointer; background: #70C7E2; border: none; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
 form#client_audit .actions input.button {margin: 20px 0 0 0; float: left; cursor: pointer; background: #70C7E2; border: 1px solid #BCBCBD; color: #000; font-size: 12px; font-family: "AGOpus"; -webkit-border-radius: 8px; border-radius: 8px; padding: 8px; text-decoration: none; font-weight: bold; }
 
 

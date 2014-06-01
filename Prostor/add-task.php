@@ -28,7 +28,7 @@
 			</div>
 			<div class="profile">
 				<span class="name"><?php echo $_GET['fio']; ?></span>
-				<span class="logout"><a href="/logout">Выйти</a></span>
+				<span class="logout"><a href="/logout.php">Выйти</a></span>
 			</div>
 		</div>
 		<div class="container">
@@ -75,7 +75,10 @@
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 1");
   echo "<li><a href=\"#\">Менеджер (".mysql_num_rows($res).")</a></li>";
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 2");
-  echo "<li><a href=\"#\">Аудитор (".mysql_num_rows($res).")</a></li>"; ?>
+  echo "<li><a href=\"#\">Аудитор (".mysql_num_rows($res).")</a></li>"; 
+  $id=$_GET['id'];
+  $fio=$_GET['fio'];
+  $str="addtask.php?id=".$id."&fio=".$fio;?>
 
 						</ul>
 					</div>
@@ -89,7 +92,7 @@
 			<div id="content">
                 		<div class="title_page">
 					<h1>Добавление задачи</h1>
-					<form action="addtask.php" method="GET" id="add_staff">
+					<form action="<?php echo $str ?>" method="POST" id="add_staff">
 						<fieldset class="date">
 							<legend>Активность </legend>
 							<div class="month">

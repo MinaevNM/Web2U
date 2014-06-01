@@ -1,16 +1,15 @@
 <!doctype html>
-<?php
-  include 'dbconnect.php';
+<?php 
+include 'dbconnect.php';
 ?>
-<html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Родные Просторы</title>
+         <title>Родные просторы</title>	
 	<script src="jquery-2.1.1.min.js"></script>
 	<script src="all.js"></script>
 	<link rel="stylesheet" href="all.css">
 </head>
-<body class="staff">
+<body link="#4B8EB7" alink="#4B8EB7"  class="staff">
 	<div class="wrap">
 		<div class="head">
 			<div class="logo">
@@ -81,17 +80,17 @@
 				</div>
 				<div class="block menu">
 				  <div class="content">
-				    <a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>&id=<?php echo $_GET['id'];?>">Список покупателей:</a>
+                                    <h2><a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>&id=<?php echo $_GET['id'];?>">Список покупателей:</a></h2>
 				  </div>
 				</div>
 
 			</div>
 			<div id="content">
 				<div class="title_page">
-					<h1>Сотрудники</h1>
-					<form action="search_staff.php" class="search_add_remove">
+					<h1>Покупатели</h1>
+					<form action="search_client.php" class="search_add_remove">
 						<div class="search">
-							<input type="text" name="search" id="search" size="20" value="">
+							<input type="text" name="search" id="search" size="20" value="<?php echo $_GET['search']; ?>">
 							<input type="submit" class="button" value="Поиск">
 						</div>
 						<?php
@@ -103,14 +102,16 @@
   $res = mysql_query("SELECT * FROM $table WHERE ID = '$id'");
  
   $row = mysql_fetch_array($res);
-  if ($row['Position'] == '2')
-     echo "<a href=\"add-staff.php?fio=".$_GET['fio']."&id=".$_GET['id']."\" class=\"add_user\">Создать пользователя</a>";
-                                                ?>
+  if ($row['Position'] == '1')
+	echo "<a href=\"client.php?fio=".$_GET['fio']."&id=".$_GET['id']."\" class=\"add_user\">Создать покупателя</a>";
+						?>
+					
 					</form>
+					<form action="" class="search_add_remove">
 					<table>
 					  <thead>
 					  	<tr>
- 						<?php
+						<?php
   dbconnect();
                                                                                                                
   $table="staff";
@@ -122,52 +123,87 @@
   if ($row['Position'] == '2')
      echo  "<th>Удалить</th><th>Редактировать</th>";
 						  ?>
-
-					  	  <th>Имя</th>
-					  	  <th>Категория</th>
-					  	  <th>Почта</th>
+					  	  <th>ФИО</th>
+					  	  <th>Статус</th>
+					  	  <th>Дата заказа</th>
 					  	  <th>Телефон</th>
 					  	</tr>
 					  </thead>
 					  <tbody>
                                                 <?php
+           
   dbconnect();
                                                                                                                
-  $table="staff";
+  $table="clients";
                                
   $res = mysql_query("SELECT * FROM $table");
 
+  $search = $_GET['search'];
   for ($i = 0; $i < mysql_num_rows($res); $i++)
   {
-         $row = mysql_fetch_array($res);
+         $row = mysql_fetch_array($res, MYSQL_ASSOC);
+       
+         $flag = false;
+		 if ($search == "" || ($row['Status'] == 1 && substr_count("Активная проработка", $search) > 0))
+		   $flag = true;
+         if ($search == "" || ($row['Status'] == 2 && substr_count("В работе", $search) > 0))
+		   $flag = true; 
+		 if ($search == "" || ($row['Status'] == 3 && substr_count("Купил", $search) > 0))
+		   $flag = true; 
+		 if ($search == "" || ($row['Status'] == 4 && substr_count("Дохлый", $search) > 0))
+		   $flag = true; 
+		 if ($search == "" || ($row['Status'] == 5 && substr_count("Перспективный", $search) > 0))
+		   $flag = true; 
+
+		   if ($flag || substr_count($row['DatePicker'], $search) > 0 || substr_count($row['Name'], $search) > 0 || substr_count($row['Surname'], $search) > 0 || substr_count($row['Patronymic'], $search) > 0 || substr_count($row['Phone'], $search) > 0)
+         {
+
          echo "<tr>";
-         $id = $_GET['id'];
  
+
+		 $table="staff";
+		 $id = $_GET['id'];
          $res2 = mysql_query("SELECT * FROM $table WHERE ID = '$id'");
          $row2 = mysql_fetch_array($res2);
- 
-         if ($row2['Position'] == 2)
+         if ($row2['Position'] == '2')
+		 {
+		 	 echo "<td><a border=\"0\" href=\"delete_client.php?fio=".$_GET['fio']."&id=".$_GET['id']."&del=".$row['id']."\"><img src=\"i\icon_x.png\"></a></td>";
+			 echo "<td><a border=\"0\" href=\"edit_client.php?fio=".$_GET['fio']."&id=".$_GET['id']."&edit=".$row['id']."\"><img width=\"20\" height=\"20\" src=\"i\edit.png\"></a></td>";
+	     }
+		 echo "<td>".$row['Surname']." ".$row['Name']." ".$row['Patronymic']."</td>";
+		 echo "<td>";
+         switch ($row['Status'])
          {
-		 	 echo "<td><a border=\"0\" href=\"delete_staff.php?fio=".$_GET['fio']."&id=".$_GET['id']."&del=".$row['id']."\"><img src=\"i\icon_x.png\"></a></td>";
-			 echo "<td><a border=\"0\" href=\"edit_staff.php?fio=".$_GET['fio']."&id=".$_GET['id']."&edit=".$row['id']."\"><img width=\"20\" height=\"20\" src=\"i\edit.png\"></a></td>";
+         case '1':
+           echo "Активная проработка";
+           break;
+         case '2':
+           echo "В работе";
+           break;
+         case '3': 
+           echo "Купил";
+           break;
+         case '4': 
+           echo "Дохлый";
+           break;
+         case '5': 
+           echo "Перспективный";
+           break;
          }
-
-          
-         echo "<td>".$row['Name']."</td>";
-         if ($row['Position'] == '1')
-           echo "<td>Менеждер</td>";
-         else if ($row['Position'] == '2')
-           echo "<td>Аудитор</td>";
-         echo "<td>".$row['Mail']."</td>";
-         echo "<td>".$row['Phone']."</td>";
-  
+         echo "</td>";
+	 echo "<td>".$row['DatePicker']."</td>";
+	 echo "<td>".$row['Phone']."</td>";
+         
          echo "</tr>";     
-  }                
+		 }
+  
+}  
 
 
                                                  ?>
 					  </tbody>
 					</table>
+					</form>
 				</div>
 			</div>
 		</div>

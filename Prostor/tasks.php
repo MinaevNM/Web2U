@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+  include 'dbconnect.php';
+?>
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
@@ -15,11 +18,11 @@
 			</div>
 			<div class="main_menu">
 				<ul>
-					<li class="staff"><a href="staff.php?fio=<?php echo $_GET['fio'];?>">Сотрудники</a></li>
-					<li class="tasks"><a href="tasks.php?fio=<?php echo $_GET['fio'];?>">Задачи</a></li>
-					<li class="invoice"><a href="invoice.php?fio=<?php echo $_GET['fio'];?>">Счета</a></li>
-					<li class="statistics"><a href="statistics.php?fio=<?php echo $_GET['fio'];?>">Статистика</a></li>
-					<li class="filters"><a href="filters.php?fio=<?php echo $_GET['fio'];?>">Фильтры</a></li>
+					<li class="staff"><a href="staff.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Сотрудники</a></li>
+					<li class="tasks"><a href="tasks.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Задачи</a></li>
+					<li class="invoice"><a href="invoice.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Счета</a></li>
+					<li class="statistics"><a href="statistics.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Статистика</a></li>
+					<li class="filters"><a href="filters.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Фильтры</a></li>
 				</ul>
 			</div>
 			<div class="profile">
@@ -28,43 +31,21 @@
   echo $_GET['fio'];
 ?>
 </span>
-				<span class="logout"><a href="/logout">Выйти</a></span>
+				<span class="logout"><a href="/logout.php">Выйти</a></span>
 			</div>
 		</div>
 		<div class="container">
 			<div class="sidebar">
-				<div class="add_task">
-					<input id="add_task" type="button" value="Создать задачу">
+				<div class="search_add_remove">
+                                        <a href="add-task.php?fio=<?php echo $_GET['fio']; ?>&id=<?php echo $_GET['id'];?>" class="add_user">Создать задачу</a>
 				</div>
 				<div class="block menu">
 					<h2>Все сотрудники:</h2>
 					<div class="content">
 						<ul>
                                                         <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+
+  dbconnect();
                                                                                                                
   $table="staff";
                                
@@ -94,30 +75,8 @@
 					<div class="content">
 						<ul>
                                                         <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+ // include("dbconnect.php");
+  dbconnect();
                                                                                                                
   $table="staff";
                                
@@ -131,7 +90,7 @@
 				</div>
 				<div class="block menu">
 				  <div class="content">
-				    <a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>">Список покупателей:</a>
+				    <a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>&id=<?php echo $_GET['id'];?>">Список покупателей:</a>
 				  </div>
 				</div>
 
@@ -142,6 +101,15 @@
 					<table class="tg">
 					  <thead>
 					  	<tr>
+<?php
+ dbconnect();
+ $table="staff";
+ $id = $_GET['id'];
+ $res = mysql_query("SELECT * FROM $table WHERE ID = '$id'");
+ $row = mysql_fetch_array($res);
+ if ($row['Position'] == "2")
+  echo "<th>Удалить</th><th>Редактировать</th>";
+?>
 					  	  <th>Задача</th>
 					  	  <th>Активность</th>
 					  	  <th>Дедлайн</th>
@@ -150,48 +118,117 @@
 					  	</tr>
 					  </thead>
 					  <tbody>
-					  	<tr>
-					  	  <td>Задача 1</td>
-					  	  <td>12 января</td>
-					  	  <td>20 января</td>
-					  	  <td>Петрова И.В</td>
-					  	  <td>Сидорова К.О</td>
-					  	</tr>
-					  	<tr>
-					  	  <td>Задача 1</td>
-					  	  <td>12 января</td>
-					  	  <td>20 января</td>
-					  	  <td>Петрова И.В</td>
-					  	  <td>Сидорова К.О</td>
-					  	</tr>
-					  	<tr>
-					  	  <td>Задача 1</td>
-					  	  <td>12 января</td>
-					  	  <td>20 января</td>
-					  	  <td>Петрова И.В</td>
-					  	  <td>Сидорова К.О</td>
-					  	</tr>
-					  	<tr>
-					  	  <td>Задача 1</td>
-					  	  <td>12 января</td>
-					  	  <td>20 января</td>
-					  	  <td>Петрова И.В</td>
-					  	  <td>Сидорова К.О</td>
-					  	</tr>
-					  	<tr>
-					  	  <td>Задача 1</td>
-					  	  <td>12 января</td>
-					  	  <td>20 января</td>
-					  	  <td>Петрова И.В</td>
-					  	  <td>Сидорова К.О</td>
-					  	</tr>
-					  	<tr>
-					  	  <td>Задача 1</td>
-					  	  <td>12 января</td>
-					  	  <td>20 января</td>
-					  	  <td>Петрова И.В</td>
-					  	  <td>Сидорова К.О</td>
-					  	</tr>
+                                          <?php
+           
+//  include("dbconnect.php");
+  dbconnect();
+                                                                                                               
+  $table="tasks";
+                               
+  $res = mysql_query("SELECT * FROM $table");
+
+  for ($i = 0; $i < mysql_num_rows($res); $i++)
+  {
+         $row = mysql_fetch_array($res);
+         echo "<tr>";
+         $id = $_GET['id'];
+         $table2 = "staff";
+         $res2 = mysql_query("SELECT * FROM $table2 WHERE ID = '$id'");
+         $row2 = mysql_fetch_array($res2);
+         if ($row2['Position'] == "2")
+         {
+           echo "<td><a border=\"0\" href=\"delete_task.php?fio=".$_GET['fio']."&id=".$_GET['id']."&del=".$row['id']."\"><img src=\"i\icon_x.png\"></a></td>";
+           echo "<td><a border=\"0\" href=\"edit_task.php?fio=".$_GET['fio']."&id=".$_GET['id']."&edit=".$row['id']."\"><img width=\"20\" height=\"20\" src=\"i\edit.png\"></a></td>";
+         }
+          
+         echo "<td>Задача".$row['id']."</td>";
+         echo "<td>".$row['dayAct']." ";
+         switch ($row['monthAct'])
+         {
+         case 1:
+           echo "Января";
+           break;
+         case 2:
+           echo "Февраля";
+           break;
+         case 3:
+           echo "Марта";
+           break;
+         case 4:
+           echo "Апреля";
+           break;
+         case 5:
+           echo "Мая";
+           break;
+         case 6:
+           echo "Июня";
+           break;
+         case 7:
+           echo "Июля";
+           break;
+         case 8:
+           echo "Августа";
+           break;
+         case 9:
+           echo "Сентября";
+           break;
+         case 10:
+           echo "Октября";
+           break;
+         case 11:
+           echo "Ноября";
+           break;
+         case 12:
+           echo "Декабря";
+           break;
+         }
+         echo "</td><td>".$row['dayDead']." ";
+         switch ($row['monthDead'])
+         {
+         case 1:
+           echo "Января";
+           break;
+         case 2:
+           echo "Февраля";
+           break;
+         case 3:
+           echo "Марта";
+           break;
+         case 4:
+           echo "Апреля";
+           break;
+         case 5:
+           echo "Мая";
+           break;
+         case 6:
+           echo "Июня";
+           break;
+         case 7:
+           echo "Июля";
+           break;
+         case 8:
+           echo "Августа";
+           break;
+         case 9:
+           echo "Сентября";
+           break;
+         case 10:
+           echo "Октября";
+           break;
+         case 11:
+           echo "Ноября";
+           break;
+         case 12:
+           echo "Декабря";
+           break;
+         }
+
+         echo "</td><td>".$row['Executor']."</td>";
+         echo "<td>".$row['Creator']."</td>";
+  
+         echo "</tr>";     
+  }                
+?>
 					  </tbody>
 					</table>
 				</div>

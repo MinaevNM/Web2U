@@ -1,7 +1,9 @@
-					<form action="add-audit.php?fio=
 <?php
-echo $_GET['fio']."&id=".$_GET['id'];
-?> id="client_audit">
+ $id=$_GET['id'];
+  $fio=$_GET['fio'];
+  $str="add-audit.php?id=".$id."&fio=".$fio;
+?>  
+					<form action=<?php echo $str ?> id="client_audit" method="post">
 					<h2>Клиентская карточка (поля для заполнения аудитом)</h2>
 						<fieldset class="client_message_date">
 							<div class="messages_audit">

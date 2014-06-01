@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+  include 'dbconnect.php';
+?>
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
@@ -18,16 +21,16 @@
 			</div>
 			<div class="main_menu">
 								<ul>
-					<li class="staff"><a href="staff.php?fio=<?php echo $_GET['fio'];?>">Сотрудники</a></li>
-					<li class="tasks"><a href="tasks.php?fio=<?php echo $_GET['fio'];?>">Задачи</a></li>
-					<li class="invoice"><a href="invoice.php?fio=<?php echo $_GET['fio'];?>">Счета</a></li>
-					<li class="statistics"><a href="statistics.php?fio=<?php echo $_GET['fio'];?>">Статистика</a></li>
-					<li class="filters"><a href="filters.php?fio=<?php echo $_GET['fio'];?>">Фильтры</a></li>
+					<li class="staff"><a href="staff.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Сотрудники</a></li>
+					<li class="tasks"><a href="tasks.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Задачи</a></li>
+					<li class="invoice"><a href="invoice.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Счета</a></li>
+					<li class="statistics"><a href="statistics.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Статистика</a></li>
+					<li class="filters"><a href="filters.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Фильтры</a></li>
 				</ul>
 			</div>
 			<div class="profile">
-				<span class="name">Петрова И.В</span>
-				<span class="logout"><a href="/logout">Выйти</a></span>
+				<span class="name"><?php echo $_GET['fio'];?></span>
+				<span class="logout"><a href="/logout.php">Выйти</a></span>
 			</div>
 		</div>
 		<div class="container">
@@ -38,31 +41,7 @@
 						<ul>
 
                                                         <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
-                                                                                                               
+  dbconnect();
   $table="staff";
                                
   $res = mysql_query("SELECT * FROM $table");
@@ -91,44 +70,25 @@
 					<div class="content">
 						<ul>
                                                         <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+  dbconnect();
                                                                                                                
   $table="staff";
                                
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 1");
   echo "<li><a href=\"#\">Менеджеры (".mysql_num_rows($res).")</a></li>";
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 2");
-  echo "<li><a href=\"#\">Аудиторы (".mysql_num_rows($res).")</a></li>"; ?>
+  echo "<li><a href=\"#\">Аудиторы (".mysql_num_rows($res).")</a></li>"; 
+  $id=$_GET['id'];
+  $fio=$_GET['fio'];
+  $str="add-client.php?id=".$id."&fio=".$fio;
+  ?>
 
 						</ul>
 					</div>
 				</div>
 				<div class="block menu">
 				  <div class="content">
-				    <a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>">Список покупателей:</a>
+				    <a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>&id=<?php echo $_GET['id'];?>">Список покупателей:</a>
 				  </div>
 				</div>
 
@@ -136,7 +96,7 @@
 			<div id="content">
 				<div class="title_page">
 					<h1>Клиентская карточка (поля для заполнения менеджером)</h1>
-					<form action="add-client.php" id="client">
+					<form action="<?php echo $str ?>" method="POST" id="client">
 						<fieldset class="left">
 							<div class="surname">
 								<label for="surname">Фамилия</label>
@@ -231,86 +191,20 @@
 							<input type="submit" class="button" value="Сохранить">
 						</div>
 					</form>
-	
-					<form action="" id="client_audit">
-					<h2>Клиентская карточка (поля для заполнения аудитом)</h2>
-						<fieldset class="client_message_date">
-							<div class="messages_audit">
-								<label for="messages_audit">Рабочие примечания (комментарии которые будут вносится менеджером)</label>
-								<textarea name="messages_audit" id="" cols="30" rows="10"></textarea>
-							</div>
-							
-							<div class="date audit">
-								<label for="datepicker_audit">Дата договора</label>
-								<input type="text" id="datepicker_audit" class="date_audit">
-								<div id="date_audit"></div>
-							</div>
-						</fieldset>
-						<fieldset class="else">
-							<h3>Параметры купивших:</h3>
-							<fieldset class="left">
-								<div class="plot_number">
-									<label for="plot_number">Номер участка</label>
-									<input type="text" name="plot_number" id="plot_number" size="20" value="">
-								</div>
-								<div class="contract_number">
-									<label for="contract_number">Номер договора</label>
-									<input type="text" name="contract_number" id="contract_number" size="20" value="">
-								</div>
-								<div class="land_area">
-									<label for="land_area">Площадь участка</label>
-									<select name="land_area" id="land_area">
-										<option value="1">6 соток</option>
-										<option value="2">12 соток</option>
-										<option value="3">17 соток</option>
-									</select>
-								</div>
-								<div class="parameters_the_deal">
-									<label for="parameters_the_deal_1">Параметры сделки</label>
-									<select name="parameters_the_deal_1" id="parameters_the_deal_1">
-										<option value="1">Купля/Продажа</option>
-										<option value="2">Инвест. договор</option>
-										<option value="3">Общедолевая стоимость</option>
-										<option value="4">ОДС</option>
-										<option value="5">договор (газ)</option>
-									</select>
-									<select name="parameters_the_deal_2" id="parameters_the_deal_2">
-										<option value="1">Подводки</option>
-										<option value="2">Электричество</option>
-										<option value="3">Газ</option>
-										<option value="4">Вода</option>
-									</select>
-									<select name="parameters_the_deal_3" id="parameters_the_deal_3">
-										<option value="1">ДНП</option>
-										<option value="2">Взнос</option>
-										<option value="3">Членство</option>
-									</select>
-								</div>
-							</fieldset>
-							<fieldset class="right">
-								<div class="utensils">
-									<label for="utensils">Принадлежность</label>
-									<select name="utensils" id="utensils">
-										<option value="1">Мега-инвест</option>
-										<option value="2">Альфа-инвест</option>
-										<option value="3">Астра-инвест</option>
-										<option value="4">ИП</option>
-									</select>
-								</div>
-								<div class="contract_value">
-									<label for="contract_value">Стоимость договора</label>
-									<input type="text" name="contract_value" id="contract_value" size="20" value="">
-								</div>
-								<div class="kv">
-									<label for="kv">КВ</label>
-									<input type="text" name="kv" id="kv" size="20" value="">
-								</div>
-							</fieldset>
-						</fieldset>
-						<div class="actions">
-							<input type="submit" class="button" value="Сохранить">
-						</div>
-					</form>
+<?php
+  $id = $_GET['id'];
+  	
+  dbconnect();
+                                                                                                               
+  $table="staff";
+
+  $res = mysql_query("SELECT * FROM $table WHERE ID = '$id'");
+ 
+  $row = mysql_fetch_array($res);
+  if ($row['Position'] == '2')
+     include("client.html");
+
+?>
 				</div>
 			</div>
 		</div>

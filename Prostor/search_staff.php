@@ -91,7 +91,7 @@
 					<h1>Сотрудники</h1>
 					<form action="search_staff.php" class="search_add_remove">
 						<div class="search">
-							<input type="text" name="search" id="search" size="20" value="">
+							<input type="text" name="search" value="<?php echo $_GET['search']; ?>" id="search" size="20" value="">
 							<input type="submit" class="button" value="Поиск">
 						</div>
 						<?php
@@ -136,10 +136,19 @@
   $table="staff";
                                
   $res = mysql_query("SELECT * FROM $table");
+  $search = $_GET['search'];
 
   for ($i = 0; $i < mysql_num_rows($res); $i++)
   {
          $row = mysql_fetch_array($res);
+		 $flag = false;
+		 if ($search == "" || ($row['Position'] == 1 && substr_count("Менеджер", $search) > 0))
+		   $flag = true;
+		 if ($search == "" || ($row['Position'] == 2 && substr_count("Аудитор", $search) > 0))
+		   $flag = true;
+		  
+         if ($flag || substr_count($row['Name'], $search) > 0 || substr_count($row['Position'], $search) > 0 || substr_count($row['Mail'], $search) > 0 || substr_count($row['Phone'], $search) > 0)
+         {
          echo "<tr>";
          $id = $_GET['id'];
  
@@ -161,9 +170,10 @@
          echo "<td>".$row['Mail']."</td>";
          echo "<td>".$row['Phone']."</td>";
   
-         echo "</tr>";     
-  }                
-
+         echo "</tr>";  
+         }   
+                  
+  }
 
                                                  ?>
 					  </tbody>

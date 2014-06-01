@@ -1,47 +1,30 @@
 <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";                           
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");            
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+  include("dbconnect.php");
+  dbconnect();
 
   $table="clients";
 
-  $surname         = $_GET['surname'];
-  $name            = $_GET['name'];                                          
-  $patronymic      = $_GET['patronymic'];
-  $sex             = $_GET['sex'];
-  $phone           = $_GET['phone'];
-  $city            = $_GET['city'];
-  $address         = $_GET['address'];
-  $locations       = $_GET['locations'];   
-  $name_competitor = $_GET['name_competitor'];   
-  $how_give        = $_GET['How_give'];
-  $datepicker      = $_GET['datepicker'];
-  $add_venue       = $_GET['add_venue'];
-  $status          = $_GET['status'];
-  $where_know_us   = $_GET['where_know_us'];
-  $messages_manager= $_GET['messages_manager'];
-
+  $surname         = $_POST['surname'];
+  $name            = $_POST['name'];                                          
+  $patronymic      = $_POST['patronymic'];
+  $sex             = $_POST['sex'];
+  $phone           = $_POST['phone'];
+  $city            = $_POST['city'];
+  $address         = $_POST['address'];
+  $locations       = $_POST['locations'];   
+  $name_competitor = $_POST['name_competitor'];   
+  $how_give        = $_POST['How_give'];
+  $datepicker      = $_POST['datepicker'];
+  $add_venue       = $_POST['add_venue'];
+  $status          = $_POST['status'];
+  $where_know_us   = $_POST['where_know_us'];
+  $messages_manager= $_POST['messages_manager'];
+  $fio=$_GET['fio'];
+  $id=$_GET['id'];
   $query = "INSERT INTO $table(Surname, Name, Patronymic, Sex, Phone, City, Address, Locations, NameCompetitor, HowGive, DatePicker, AddVenue, Status, WhereKnow, Message) VALUES ('$surname','$name','$patronymic','$sex','$phone','$city','$address','$locations','$name_competitor','$how_give','$datepicker','$add_venue','$status','$where_know_us','$messages_manager')";
   mysql_query($query);
+  
+  $ref = 'Location: /clientlist.php?fio='.$fio.'&id='.$id;
+  header($ref);
+
  ?>

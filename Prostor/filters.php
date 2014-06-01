@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+include 'dbconnect.php';
+?>
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
@@ -15,16 +18,16 @@
 			</div>
 			<div class="main_menu">
 				<ul>
-					<li class="staff"><a href="staff.php?fio=<?php echo $_GET['fio'];?>">Сотрудники</a></li>
-					<li class="tasks"><a href="tasks.php?fio=<?php echo $_GET['fio'];?>">Задачи</a></li>
-					<li class="invoice"><a href="invoice.php?fio=<?php echo $_GET['fio'];?>">Счета</a></li>
-					<li class="statistics"><a href="statistics.php?fio=<?php echo $_GET['fio'];?>">Статистика</a></li>
-					<li class="filters"><a href="filters.php?fio=<?php echo $_GET['fio'];?>">Фильтры</a></li>
+					<li class="staff"><a href="staff.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Сотрудники</a></li>
+					<li class="tasks"><a href="tasks.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Задачи</a></li>
+					<li class="invoice"><a href="invoice.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Счета</a></li>
+					<li class="statistics"><a href="statistics.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Статистика</a></li>
+					<li class="filters"><a href="filters.php?fio=<?php echo $_GET['fio'];?>&id=<?php echo $_GET['id'];?>">Фильтры</a></li>
 				</ul>
 			</div>
 			<div class="profile">
 				<span class="name"><?php echo $_GET['fio']?></span>
-				<span class="logout"><a href="/logout">Выйти</a></span>
+				<span class="logout"><a href="/logout.php">Выйти</a></span>
 			</div>
 		</div>
 		<div class="container">
@@ -34,30 +37,7 @@
 					<div class="content">
 						<ul>
                                                         <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+  dbconnect();
                                                                                                                
   $table="staff";
                                
@@ -87,30 +67,7 @@
 					<div class="content">
 						<ul>
                                                         <?php
-  $dblocation = "mysql47.1gb.ru";
-  $dbname = "gb_x_newcrm";
-  $dbuser = "gb_x_newcrm";
-  $dbpasswd = "ed6cd0b3tyu";
-  $dbcnx = mysql_connect($dblocation, $dbuser, $dbpasswd);
-  if (!$dbcnx)
-  {
-    echo "Server is unavailable. Error: ".mysql_error();
-	exit();
-  }
-  if (!mysql_select_db($dbname, $dbcnx))
-  {
-    echo "datebase is unavailable.";
-	exit();
-  }
-  mysql_query("set character_set_client='cp1251'");
-  mysql_query("set character_set_results='cp1251'");
-  mysql_query("set character_set_collation_connection='cp1251'");
-  mysql_query("set character_set_connection='cp1251'");
-  mysql_query("set character_set_datebase='cp1251'");
-  mysql_query("set character_set_server='cp1251'");
-  mysql_query("set character_set_system='cp1251'");
-  mysql_query("set character_set_collation_datebase='cp1251'");
-  mysql_query("set character_set_collation_server='cp1251'");
+  dbconnect();
                                                                                                                
   $table="staff";
                                
@@ -124,7 +81,7 @@
 				</div>
 				<div class="block menu">
 				  <div class="content">
-				    <a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>">Список покупателей:</a>
+				    <a href="clientlist.php?fio=<?php echo $_GET['fio']; ?>&id=<?php echo $_GET['id'];?>">Список покупателей:</a>
 				  </div>
 				</div>
 
@@ -132,31 +89,23 @@
 			<div id="content">
 				<div class="title_page">
 					<h1>Фильтры/Фильтр по названию</h1>
-					<form action="" id="filters">
+					<form action="start_filter.php?fio=<?php echo $_GET['fio']; ?>&id=<?php echo $_GET['id']; ?>" id="filters">
 						<fieldset class="left">
 							<div class="surname">
 								<label for="surname">Фамилия</label>
-								<select name="surname" id="surname">
-									<option value="1">Вася</option>
-									<option value="2">Джонни</option>
-								</select>
+        						        	<input type="text" name="surname" id="surname" size="20" value="">
 							</div>
 							<div class="name">
 								<label for="name">Имя</label>
-								<select name="name" id="name">
-									<option value="1">Вася</option>
-									<option value="2">Джонни</option>
-								</select>
+                                                                 	<input type="text" name="name" id="name" size="20" value="">
 							</div>
 							<div class="patronymic">
 								<label for="patronymic">Отчество</label>
-								<select name="patronymic" id="patronymic">
-									<option value="1">Вася</option>
-									<option value="2">Джонни</option>
-								</select>
+                                                                	<input type="text" name="patronymic" id="patronymic" size="20" value="">
+								
 							</div>
 							<div class="sex">
-								<label for="sex">Пол</label>
+                                                               <label for="sex">Пол</label>
 								<select name="sex" id="sex">
 									<option value="male">мужской</option>
 									<option value="female">женский</option>
@@ -165,8 +114,8 @@
 							<div class="city">
 								<label for="city">Город</label>
 								<select name="city" id="city">
-									<option value="kiev">Kiev</option>
-									<option value="moscow">Moscow</option>
+									<option value="Киев">Киев</option>
+									<option value="Москва">Москва</option>
 								</select>						
 							</div>
 							<div class="locations">

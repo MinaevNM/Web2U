@@ -4,12 +4,12 @@
 
   $table="tasks";
 
-  $dayAct = $_GET['day'];
-  $monthAct = $_GET['month'];
-  $dayDead = $_GET['dday'];
-  $monthDead = $_GET['dmonth'];
-  $executor = $_GET['Executor'];
-  $creator = $_GET['Creator'];
+  $dayAct = $_POST['day'];
+  $monthAct = $_POST['month'];
+  $dayDead = $_POST['dday'];
+  $monthDead = $_POST['dmonth'];
+  $executor = $_POST['Executor'];
+  $creator = $_POST['Creator'];
    
   $query = "INSERT INTO $table(dayAct, monthAct, dayDead, monthDead, Executor, Creator) VALUES ('$dayAct','$monthAct','$dayDead','$monthDead','$executor','$creator')";
   mysql_query($query);

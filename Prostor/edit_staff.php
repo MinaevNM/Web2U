@@ -28,7 +28,7 @@
 			</div>
 			<div class="profile">
 				<span class="name"><?php echo $_GET['fio']; ?></span>
-				<span class="logout"><a href="/logout">Выйти</a></span>
+				<span class="logout"><a href="/logout.php">Выйти</a></span>
 			</div>
 		</div>
 		<div class="container">
@@ -75,7 +75,11 @@
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 1");
   echo "<li><a href=\"#\">Менеджер (".mysql_num_rows($res).")</a></li>";
   $res = mysql_query("SELECT * FROM $table WHERE POSITION = 2");
-  echo "<li><a href=\"#\">Аудитор (".mysql_num_rows($res).")</a></li>"; ?>
+  echo "<li><a href=\"#\">Аудитор (".mysql_num_rows($res).")</a></li>"; 
+   
+  $id=$_GET['id'];
+  $fio=$_GET['fio'];
+  $str="addtodb.php?id=".$id."&fio=".$fio;?>
 
 						</ul>
 					</div>
@@ -89,7 +93,7 @@
 			<div id="content">
                 		<div class="title_page">
 					<h1>Редактирование сотрудника</h1>
-					<form action="addtodb.php" method="GET" id="add_staff">
+					<form action=<?php echo $str ?> method="POST" id="add_staff">
 						<div class="surname">
 							<label for="surname">Фамилия</label>
 							<input type="text" name="surname" id="surname" size="20" value=

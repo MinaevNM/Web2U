@@ -27,7 +27,7 @@ include 'dbconnect.php';
 			</div>
 			<div class="profile">
 				<span class="name"><?php echo $_GET['fio']?></span>
-				<span class="logout"><a href="/logout">Выйти</a></span>
+				<span class="logout"><a href="/logout.php">Выйти</a></span>
 			</div>
 		</div>
 		<div class="container">
